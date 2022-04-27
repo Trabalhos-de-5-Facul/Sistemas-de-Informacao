@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() => InitState();
 }
@@ -83,17 +85,18 @@ class InitState extends State<SignUpScreen> {
 
   Widget initWidget() {
     return Scaffold(
-        backgroundColor: Color.fromARGB(255, 177, 216, 183),
+        backgroundColor: const Color.fromARGB(255, 177, 216, 183),
         body: SingleChildScrollView(
             child: Column(
           children: [
             Container(
               height: 250,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 borderRadius:
                     BorderRadius.only(bottomLeft: Radius.circular(90)),
                 color: Color.fromARGB(0, 4, 197, 52),
                 gradient: LinearGradient(
+                  // ignore: prefer_const_literals_to_create_immutables
                   colors: [
                     (Color.fromARGB(255, 40, 136, 107)),
                     Color.fromARGB(255, 9, 175, 147)
@@ -108,7 +111,7 @@ class InitState extends State<SignUpScreen> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
-                    margin: EdgeInsets.only(top: 50),
+                    margin: const EdgeInsets.only(top: 50),
                     child: Image.asset(
                       "images/logo_ceasa.png",
                       height: 100,
@@ -120,8 +123,8 @@ class InitState extends State<SignUpScreen> {
             ),
             Container(
               alignment: Alignment.center,
-              margin: EdgeInsets.only(left: 20, right: 20, top: 20),
-              padding: EdgeInsets.only(left: 20, right: 20),
+              margin: const EdgeInsets.only(left: 20, right: 20, top: 20),
+              padding: const EdgeInsets.only(left: 20, right: 20),
               height: 54,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(50),
@@ -137,8 +140,8 @@ class InitState extends State<SignUpScreen> {
                 onChanged: (String text) async {
                   register.setNomeOng(text);
                 },
-                cursorColor: Color(0xffF5591F),
-                decoration: InputDecoration(
+                cursorColor: const Color(0xffF5591F),
+                decoration: const InputDecoration(
                   icon: Icon(
                     Icons.assignment,
                     color: Color.fromARGB(255, 4, 197, 52),
@@ -151,12 +154,12 @@ class InitState extends State<SignUpScreen> {
             ),
             Container(
               alignment: Alignment.center,
-              margin: EdgeInsets.only(left: 20, right: 20, top: 20),
-              padding: EdgeInsets.only(left: 20, right: 20),
+              margin: const EdgeInsets.only(left: 20, right: 20, top: 20),
+              padding: const EdgeInsets.only(left: 20, right: 20),
               height: 54,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(50),
-                color: Color(0xffEEEEEE),
+                color: const Color(0xffEEEEEE),
                 boxShadow: const [
                   BoxShadow(
                       offset: Offset(0, 20),
@@ -168,8 +171,8 @@ class InitState extends State<SignUpScreen> {
                 onChanged: (String text) async {
                   register.setNomeDiretora(text);
                 },
-                cursorColor: Color.fromARGB(0, 4, 197, 52),
-                decoration: InputDecoration(
+                cursorColor: const Color.fromARGB(0, 4, 197, 52),
+                decoration: const InputDecoration(
                   focusColor: Color.fromARGB(0, 4, 197, 52),
                   icon: Icon(
                     Icons.face,
@@ -183,12 +186,12 @@ class InitState extends State<SignUpScreen> {
             ),
             Container(
               alignment: Alignment.center,
-              margin: EdgeInsets.only(left: 20, right: 20, top: 20),
-              padding: EdgeInsets.only(left: 20, right: 20),
+              margin: const EdgeInsets.only(left: 20, right: 20, top: 20),
+              padding: const EdgeInsets.only(left: 20, right: 20),
               height: 54,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(50),
-                color: Color(0xffEEEEEE),
+                color: const Color(0xffEEEEEE),
                 boxShadow: const [
                   BoxShadow(
                       offset: Offset(0, 20),
@@ -200,8 +203,8 @@ class InitState extends State<SignUpScreen> {
                 onChanged: (String text) async {
                   register.setRua(text);
                 },
-                cursorColor: Color.fromARGB(0, 4, 197, 52),
-                decoration: InputDecoration(
+                cursorColor: const Color.fromARGB(0, 4, 197, 52),
+                decoration: const InputDecoration(
                   focusColor: Color.fromARGB(0, 4, 197, 52),
                   icon: Icon(
                     Icons.house,
@@ -215,12 +218,12 @@ class InitState extends State<SignUpScreen> {
             ),
             Container(
               alignment: Alignment.center,
-              margin: EdgeInsets.only(left: 20, right: 20, top: 20),
-              padding: EdgeInsets.only(left: 20, right: 20),
+              margin: const EdgeInsets.only(left: 20, right: 20, top: 20),
+              padding: const EdgeInsets.only(left: 20, right: 20),
               height: 54,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(50),
-                color: Color(0xffEEEEEE),
+                color: const Color(0xffEEEEEE),
                 boxShadow: const [
                   BoxShadow(
                       offset: Offset(0, 20),
@@ -232,8 +235,8 @@ class InitState extends State<SignUpScreen> {
                 onChanged: (text) async {
                   register.setNumero(int.parse(text));
                 },
-                cursorColor: Color.fromARGB(0, 4, 197, 52),
-                decoration: InputDecoration(
+                cursorColor: const Color.fromARGB(0, 4, 197, 52),
+                decoration: const InputDecoration(
                   focusColor: Color.fromARGB(0, 4, 197, 52),
                   icon: Icon(
                     Icons.pin,
@@ -247,12 +250,12 @@ class InitState extends State<SignUpScreen> {
             ),
             Container(
               alignment: Alignment.center,
-              margin: EdgeInsets.only(left: 20, right: 20, top: 20),
-              padding: EdgeInsets.only(left: 20, right: 20),
+              margin: const EdgeInsets.only(left: 20, right: 20, top: 20),
+              padding: const EdgeInsets.only(left: 20, right: 20),
               height: 54,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(50),
-                color: Color(0xffEEEEEE),
+                color: const Color(0xffEEEEEE),
                 boxShadow: const [
                   BoxShadow(
                       offset: Offset(0, 20),
@@ -264,8 +267,8 @@ class InitState extends State<SignUpScreen> {
                 onChanged: (String text) async {
                   register.setBairro(text);
                 },
-                cursorColor: Color.fromARGB(0, 4, 197, 52),
-                decoration: InputDecoration(
+                cursorColor: const Color.fromARGB(0, 4, 197, 52),
+                decoration: const InputDecoration(
                   focusColor: Color.fromARGB(0, 4, 197, 52),
                   icon: Icon(
                     Icons.add_circle,
@@ -279,12 +282,12 @@ class InitState extends State<SignUpScreen> {
             ),
             Container(
               alignment: Alignment.center,
-              margin: EdgeInsets.only(left: 20, right: 20, top: 20),
-              padding: EdgeInsets.only(left: 20, right: 20),
+              margin: const EdgeInsets.only(left: 20, right: 20, top: 20),
+              padding: const EdgeInsets.only(left: 20, right: 20),
               height: 54,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(50),
-                color: Color(0xffEEEEEE),
+                color: const Color(0xffEEEEEE),
                 boxShadow: const [
                   BoxShadow(
                       offset: Offset(0, 20),
@@ -296,8 +299,8 @@ class InitState extends State<SignUpScreen> {
                 onChanged: (String text) async {
                   register.setCidade(text);
                 },
-                cursorColor: Color.fromARGB(0, 4, 197, 52),
-                decoration: InputDecoration(
+                cursorColor: const Color.fromARGB(0, 4, 197, 52),
+                decoration: const InputDecoration(
                   focusColor: Color.fromARGB(0, 4, 197, 52),
                   icon: Icon(
                     Icons.place,
@@ -311,12 +314,12 @@ class InitState extends State<SignUpScreen> {
             ),
             Container(
               alignment: Alignment.center,
-              margin: EdgeInsets.only(left: 20, right: 20, top: 20),
-              padding: EdgeInsets.only(left: 20, right: 20),
+              margin: const EdgeInsets.only(left: 20, right: 20, top: 20),
+              padding: const EdgeInsets.only(left: 20, right: 20),
               height: 54,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(50),
-                color: Color(0xffEEEEEE),
+                color: const Color(0xffEEEEEE),
                 boxShadow: const [
                   BoxShadow(
                       offset: Offset(0, 20),
@@ -328,8 +331,8 @@ class InitState extends State<SignUpScreen> {
                 onChanged: (String text) async {
                   register.setEstado(text);
                 },
-                cursorColor: Color.fromARGB(0, 4, 197, 52),
-                decoration: InputDecoration(
+                cursorColor: const Color.fromARGB(0, 4, 197, 52),
+                decoration: const InputDecoration(
                   focusColor: Color.fromARGB(0, 4, 197, 52),
                   icon: Icon(
                     Icons.streetview,
@@ -343,12 +346,12 @@ class InitState extends State<SignUpScreen> {
             ),
             Container(
               alignment: Alignment.center,
-              margin: EdgeInsets.only(left: 20, right: 20, top: 20),
-              padding: EdgeInsets.only(left: 20, right: 20),
+              margin: const EdgeInsets.only(left: 20, right: 20, top: 20),
+              padding: const EdgeInsets.only(left: 20, right: 20),
               height: 54,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(50),
-                color: Color(0xffEEEEEE),
+                color: const Color(0xffEEEEEE),
                 boxShadow: const [
                   BoxShadow(
                       offset: Offset(0, 20),
@@ -360,8 +363,8 @@ class InitState extends State<SignUpScreen> {
                 onChanged: (String text) async {
                   register.setCep(int.parse(text));
                 },
-                cursorColor: Color.fromARGB(0, 4, 197, 52),
-                decoration: InputDecoration(
+                cursorColor: const Color.fromARGB(0, 4, 197, 52),
+                decoration: const InputDecoration(
                   focusColor: Color.fromARGB(0, 4, 197, 52),
                   icon: Icon(
                     Icons.gps_fixed,
@@ -375,8 +378,8 @@ class InitState extends State<SignUpScreen> {
             ),
             Container(
               alignment: Alignment.center,
-              margin: EdgeInsets.only(left: 20, right: 20, top: 20),
-              padding: EdgeInsets.only(left: 20, right: 20),
+              margin: const EdgeInsets.only(left: 20, right: 20, top: 20),
+              padding: const EdgeInsets.only(left: 20, right: 20),
               height: 54,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(50),
@@ -390,12 +393,13 @@ class InitState extends State<SignUpScreen> {
             ),
             Container(
               alignment: Alignment.center,
-              margin: EdgeInsets.only(left: 900, right: 900, bottom: 20),
-              padding: EdgeInsets.only(left: 20, right: 20),
+              margin: const EdgeInsets.only(left: 900, right: 900, bottom: 20),
+              padding: const EdgeInsets.only(left: 20, right: 20),
               height: 54,
               decoration: BoxDecoration(
-                gradient: LinearGradient(colors: [
-                  (new Color.fromARGB(255, 238, 238, 238)),
+                // ignore: prefer_const_literals_to_create_immutables
+                gradient: const LinearGradient(colors: [
+                  (Color.fromARGB(255, 238, 238, 238)),
                   Color.fromARGB(255, 238, 238, 238)
                 ], begin: Alignment.centerLeft, end: Alignment.centerRight),
                 borderRadius: BorderRadius.circular(50),
@@ -406,7 +410,7 @@ class InitState extends State<SignUpScreen> {
                   print(register.getNomeOng());
                   // Write Click Listener Code Here.
                 },
-                child: Text(
+                child: const Text(
                   "REGISTER",
                   style: TextStyle(color: Colors.black),
                 ),
