@@ -5,6 +5,78 @@ class SignUpScreen extends StatefulWidget {
   State<StatefulWidget> createState() => InitState();
 }
 
+// ignore: camel_case_types
+class registro {
+  late int numero, cep;
+  late String nomeOng, nomeDiretora, rua, bairro, cidade, estado;
+
+  setNumero(int numero) {
+    this.numero = numero;
+  }
+
+  int getNumero() {
+    return this.numero;
+  }
+
+  setCep(int cep) {
+    this.cep = cep;
+  }
+
+  int getCep() {
+    return this.cep;
+  }
+
+  setNomeOng(String nomeOng) {
+    this.nomeOng = nomeOng;
+  }
+
+  String getNomeOng() {
+    return this.nomeOng;
+  }
+
+  setNomeDiretora(String nomeDiretora) {
+    this.nomeDiretora = nomeDiretora;
+  }
+
+  String getNomeDiretora() {
+    return this.nomeDiretora;
+  }
+
+  setRua(String rua) {
+    this.rua = rua;
+  }
+
+  String getRua() {
+    return this.rua;
+  }
+
+  setBairro(String bairro) {
+    this.bairro = bairro;
+  }
+
+  String getBairro() {
+    return this.bairro;
+  }
+
+  setCidade(String cidade) {
+    this.cidade = cidade;
+  }
+
+  String getCidade() {
+    return this.cidade;
+  }
+
+  setEstado(String estado) {
+    this.estado = estado;
+  }
+
+  String getEstado() {
+    return this.estado;
+  }
+}
+
+registro register = registro();
+
 class InitState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) => initWidget();
@@ -62,6 +134,9 @@ class InitState extends State<SignUpScreen> {
                 ],
               ),
               child: TextField(
+                onChanged: (String text) async {
+                  register.setNomeOng(text);
+                },
                 cursorColor: Color(0xffF5591F),
                 decoration: InputDecoration(
                   icon: Icon(
@@ -90,6 +165,9 @@ class InitState extends State<SignUpScreen> {
                 ],
               ),
               child: TextField(
+                onChanged: (String text) async {
+                  register.setNomeDiretora(text);
+                },
                 cursorColor: Color.fromARGB(0, 4, 197, 52),
                 decoration: InputDecoration(
                   focusColor: Color.fromARGB(0, 4, 197, 52),
@@ -119,6 +197,9 @@ class InitState extends State<SignUpScreen> {
                 ],
               ),
               child: TextField(
+                onChanged: (String text) async {
+                  register.setRua(text);
+                },
                 cursorColor: Color.fromARGB(0, 4, 197, 52),
                 decoration: InputDecoration(
                   focusColor: Color.fromARGB(0, 4, 197, 52),
@@ -148,6 +229,9 @@ class InitState extends State<SignUpScreen> {
                 ],
               ),
               child: TextField(
+                onChanged: (text) async {
+                  register.setNumero(int.parse(text));
+                },
                 cursorColor: Color.fromARGB(0, 4, 197, 52),
                 decoration: InputDecoration(
                   focusColor: Color.fromARGB(0, 4, 197, 52),
@@ -177,6 +261,9 @@ class InitState extends State<SignUpScreen> {
                 ],
               ),
               child: TextField(
+                onChanged: (String text) async {
+                  register.setBairro(text);
+                },
                 cursorColor: Color.fromARGB(0, 4, 197, 52),
                 decoration: InputDecoration(
                   focusColor: Color.fromARGB(0, 4, 197, 52),
@@ -206,6 +293,9 @@ class InitState extends State<SignUpScreen> {
                 ],
               ),
               child: TextField(
+                onChanged: (String text) async {
+                  register.setCidade(text);
+                },
                 cursorColor: Color.fromARGB(0, 4, 197, 52),
                 decoration: InputDecoration(
                   focusColor: Color.fromARGB(0, 4, 197, 52),
@@ -235,6 +325,9 @@ class InitState extends State<SignUpScreen> {
                 ],
               ),
               child: TextField(
+                onChanged: (String text) async {
+                  register.setEstado(text);
+                },
                 cursorColor: Color.fromARGB(0, 4, 197, 52),
                 decoration: InputDecoration(
                   focusColor: Color.fromARGB(0, 4, 197, 52),
@@ -264,6 +357,9 @@ class InitState extends State<SignUpScreen> {
                 ],
               ),
               child: TextField(
+                onChanged: (String text) async {
+                  register.setCep(int.parse(text));
+                },
                 cursorColor: Color.fromARGB(0, 4, 197, 52),
                 decoration: InputDecoration(
                   focusColor: Color.fromARGB(0, 4, 197, 52),
@@ -292,23 +388,24 @@ class InitState extends State<SignUpScreen> {
                 ],
               ),
             ),
-            GestureDetector(
-              onTap: () {
-                // Write Click Listener Code Here.
-              },
-              child: Container(
-                alignment: Alignment.center,
-                margin: EdgeInsets.only(left: 900, right: 900, bottom: 20),
-                padding: EdgeInsets.only(left: 20, right: 20),
-                height: 54,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(colors: [
-                    (new Color.fromARGB(255, 238, 238, 238)),
-                    Color.fromARGB(255, 238, 238, 238)
-                  ], begin: Alignment.centerLeft, end: Alignment.centerRight),
-                  borderRadius: BorderRadius.circular(50),
-                  color: Colors.grey[200],
-                ),
+            Container(
+              alignment: Alignment.center,
+              margin: EdgeInsets.only(left: 900, right: 900, bottom: 20),
+              padding: EdgeInsets.only(left: 20, right: 20),
+              height: 54,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(colors: [
+                  (new Color.fromARGB(255, 238, 238, 238)),
+                  Color.fromARGB(255, 238, 238, 238)
+                ], begin: Alignment.centerLeft, end: Alignment.centerRight),
+                borderRadius: BorderRadius.circular(50),
+                color: Colors.grey[200],
+              ),
+              child: GestureDetector(
+                onTap: () {
+                  print(register.getNomeOng());
+                  // Write Click Listener Code Here.
+                },
                 child: Text(
                   "REGISTER",
                   style: TextStyle(color: Colors.black),
