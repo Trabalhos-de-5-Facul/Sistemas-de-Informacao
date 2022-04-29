@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Hub.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -376,42 +377,25 @@ class InitState extends State<SignUpScreen> {
                 ),
               ),
             ),
-            Container(
-              alignment: Alignment.center,
-              margin: const EdgeInsets.only(left: 20, right: 20, top: 20),
-              padding: const EdgeInsets.only(left: 20, right: 20),
-              height: 54,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(50),
-                boxShadow: const [
-                  BoxShadow(
-                      offset: Offset(0, 20),
-                      blurRadius: 100,
-                      color: Color.fromARGB(255, 17, 101, 48)),
-                ],
-              ),
-            ),
-            Container(
-              alignment: Alignment.center,
-              margin: const EdgeInsets.only(left: 900, right: 900, bottom: 20),
-              padding: const EdgeInsets.only(left: 20, right: 20),
-              height: 54,
-              decoration: BoxDecoration(
-                // ignore: prefer_const_literals_to_create_immutables
-                gradient: const LinearGradient(colors: [
-                  (Color.fromARGB(255, 238, 238, 238)),
-                  Color.fromARGB(255, 238, 238, 238)
-                ], begin: Alignment.centerLeft, end: Alignment.centerRight),
-                borderRadius: BorderRadius.circular(50),
-                color: Colors.grey[200],
-              ),
-              child: GestureDetector(
-                onTap: () {
-                  print(register.getNomeOng());
-                  // Write Click Listener Code Here.
-                },
-                child: const Text(
-                  "REGISTER",
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamedAndRemoveUntil(
+                    context, '/Hub Admin', (route) => false);
+              },
+              child: Container(
+                alignment: Alignment.center,
+                margin: EdgeInsets.symmetric(
+                    horizontal: MediaQuery.of(context).size.width * 0.35,
+                    vertical: 20),
+                padding: const EdgeInsets.only(left: 20, right: 20),
+                height: 54,
+                decoration: BoxDecoration(
+                  // ignore: prefer_const_literals_to_create_immutables
+                  borderRadius: BorderRadius.circular(50),
+                  color: Colors.grey[200],
+                ),
+                child: Text(
+                  "REGISTRAR",
                   style: TextStyle(color: Colors.black),
                 ),
               ),
