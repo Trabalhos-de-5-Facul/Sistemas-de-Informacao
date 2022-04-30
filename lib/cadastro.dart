@@ -86,6 +86,7 @@ class InitState extends State<SignUpScreen> {
 
   Widget initWidget() {
     return Scaffold(
+        appBar: AppBar(),
         backgroundColor: const Color.fromARGB(255, 177, 216, 183),
         body: SingleChildScrollView(
             child: Column(
@@ -380,7 +381,10 @@ class InitState extends State<SignUpScreen> {
             GestureDetector(
               onTap: () {
                 Navigator.pushNamedAndRemoveUntil(
-                    context, '/Hub Admin', (route) => false);
+                    context,
+                    '/Hub Admin',
+                    (route) =>
+                        false); //vai para esta pagina sem gerar um botão de retorno no appbar
               },
               child: Container(
                 alignment: Alignment.center,
@@ -395,7 +399,7 @@ class InitState extends State<SignUpScreen> {
                   color: Colors.grey[200],
                 ),
                 child: Text(
-                  "REGISTRAR",
+                  "CADASTRAR",
                   style: TextStyle(color: Colors.black),
                 ),
               ),
