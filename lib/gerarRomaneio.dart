@@ -1,13 +1,16 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 
-class gerarRomaneio extends StatefulWidget {
-  const gerarRomaneio({Key? key}) : super(key: key);
+class GerarRomaneio extends StatefulWidget {
+  const GerarRomaneio({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => InitState();
 }
 
-class InitState extends State<gerarRomaneio> {
+class InitState extends State<GerarRomaneio> {
+  @override
   Widget build(BuildContext context) => initWidget();
   Widget initWidget() {
     return Scaffold(

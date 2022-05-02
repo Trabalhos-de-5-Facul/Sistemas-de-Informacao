@@ -8,7 +8,7 @@ class HubAdmin extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('First Screen'),
+        title: const Text('Voltar'),
       ),
       backgroundColor: const Color.fromARGB(255, 177, 216, 183),
       body: Center(

@@ -12,16 +12,16 @@ void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     title: "Distribuição alimentos",
-    initialRoute: '/Hub Admin',
+    initialRoute: '/Login',
     routes: {
       '/Cadastro': (context) => const SignUpScreen(),
       '/Hub Admin': (context) => const HubAdmin(),
       '/Cadastro Motorista': (context) => const SignUpScreenDriver(),
       '/Cadastro Produto': (context) => const SignUpScreenProduct(),
-      '/Acesso ONGs': (context) => const acessoONG(),
-      '/Acesso Produtos': (context) => const acessoProdutos(),
-      '/Gerar Romaneio': (context) => const gerarRomaneio(),
-      '/Login': (context) => const login(),
+      '/Acesso ONGs': (context) => const AcessoONG(),
+      '/Acesso Produtos': (context) => const AcessoProdutos(),
+      '/Gerar Romaneio': (context) => const GerarRomaneio(),
+      '/Login': (context) => const Login(),
     },
   ));
 }

@@ -1,5 +1,6 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Hub.dart';
 
 class SignUpScreenDriver extends StatefulWidget {
   const SignUpScreenDriver({Key? key}) : super(key: key);
@@ -10,14 +11,14 @@ class SignUpScreenDriver extends StatefulWidget {
 
 // ignore: camel_case_types
 class registro {
-  late String nomeMotorista, cpfMotorista, telefone, bairro, cidade, estado;
+  late String nomeMotorista, cpfMotorista, telefone, rg, endereco, senha;
 
   setNomeMotorista(String nomeMotorista) {
     this.nomeMotorista = nomeMotorista;
   }
 
   String getNomeMotorista() {
-    return this.nomeMotorista;
+    return nomeMotorista;
   }
 
   setCpfMotorista(String cpfMotorista) {
@@ -25,7 +26,7 @@ class registro {
   }
 
   String getCpfMotorista() {
-    return this.cpfMotorista;
+    return cpfMotorista;
   }
 
   setTelefone(String telefone) {
@@ -33,31 +34,31 @@ class registro {
   }
 
   String getTelefone() {
-    return this.telefone;
+    return telefone;
   }
 
-  setBairro(String bairro) {
-    this.bairro = bairro;
+  setRG(String rg) {
+    this.rg = rg;
   }
 
-  String getBairro() {
-    return this.bairro;
+  String getRG() {
+    return rg;
   }
 
-  setCidade(String cidade) {
-    this.cidade = cidade;
+  setEndereco(String endereco) {
+    this.endereco = endereco;
   }
 
-  String getCidade() {
-    return this.cidade;
+  String getEndereco() {
+    return endereco;
   }
 
-  setEstado(String estado) {
-    this.estado = estado;
+  setSenha(String senha) {
+    this.senha = senha;
   }
 
-  String getEstado() {
-    return this.estado;
+  String getSenha() {
+    return senha;
   }
 }
 
@@ -186,6 +187,38 @@ class InitState extends State<SignUpScreenDriver> {
               ),
               child: TextField(
                 onChanged: (String text) async {
+                  register.setRG(text);
+                },
+                cursorColor: const Color.fromARGB(0, 4, 197, 52),
+                decoration: const InputDecoration(
+                  focusColor: Color.fromARGB(0, 4, 197, 52),
+                  icon: Icon(
+                    Icons.assignment_rounded,
+                    color: Color.fromARGB(255, 4, 197, 52),
+                  ),
+                  hintText: "RG",
+                  enabledBorder: InputBorder.none,
+                  focusedBorder: InputBorder.none,
+                ),
+              ),
+            ),
+            Container(
+              alignment: Alignment.center,
+              margin: const EdgeInsets.only(left: 20, right: 20, top: 20),
+              padding: const EdgeInsets.only(left: 20, right: 20),
+              height: 54,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(50),
+                color: const Color(0xffEEEEEE),
+                boxShadow: const [
+                  BoxShadow(
+                      offset: Offset(0, 20),
+                      blurRadius: 100,
+                      color: Color.fromARGB(255, 17, 101, 48)),
+                ],
+              ),
+              child: TextField(
+                onChanged: (String text) async {
                   register.setTelefone(text);
                 },
                 cursorColor: const Color.fromARGB(0, 4, 197, 52),
@@ -201,7 +234,7 @@ class InitState extends State<SignUpScreenDriver> {
                 ),
               ),
             ),
-            /* Container(
+            Container(
               alignment: Alignment.center,
               margin: const EdgeInsets.only(left: 20, right: 20, top: 20),
               padding: const EdgeInsets.only(left: 20, right: 20),
@@ -218,16 +251,16 @@ class InitState extends State<SignUpScreenDriver> {
               ),
               child: TextField(
                 onChanged: (String text) async {
-                  register.setBairro(text);
+                  register.setEndereco(text);
                 },
                 cursorColor: const Color.fromARGB(0, 4, 197, 52),
                 decoration: const InputDecoration(
                   focusColor: Color.fromARGB(0, 4, 197, 52),
-                  // icon: Icon(
-                  //   Icons.add_circle,
-                  //   color: Color.fromARGB(255, 4, 197, 52),
-                  // ),
-                  hintText: "",
+                  icon: Icon(
+                    Icons.home,
+                    color: Color.fromARGB(255, 4, 197, 52),
+                  ),
+                  hintText: "Endereço",
                   enabledBorder: InputBorder.none,
                   focusedBorder: InputBorder.none,
                 ),
@@ -250,53 +283,21 @@ class InitState extends State<SignUpScreenDriver> {
               ),
               child: TextField(
                 onChanged: (String text) async {
-                  register.setCidade(text);
+                  register.setSenha(text);
                 },
                 cursorColor: const Color.fromARGB(0, 4, 197, 52),
                 decoration: const InputDecoration(
                   focusColor: Color.fromARGB(0, 4, 197, 52),
-                  // icon: Icon(
-                  //  Icons.place,
-                  //  color: Color.fromARGB(255, 4, 197, 52),
-                  // ),
-                  hintText: "",
+                  icon: Icon(
+                    Icons.lock,
+                    color: Color.fromARGB(255, 4, 197, 52),
+                  ),
+                  hintText: "Senha",
                   enabledBorder: InputBorder.none,
                   focusedBorder: InputBorder.none,
                 ),
               ),
             ),
-            Container(
-              alignment: Alignment.center,
-              margin: const EdgeInsets.only(left: 20, right: 20, top: 20),
-              padding: const EdgeInsets.only(left: 20, right: 20),
-              height: 54,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(50),
-                color: const Color(0xffEEEEEE),
-                boxShadow: const [
-                  BoxShadow(
-                      offset: Offset(0, 20),
-                      blurRadius: 100,
-                      color: Color.fromARGB(255, 17, 101, 48)),
-                ],
-              ),
-              child: TextField(
-                onChanged: (String text) async {
-                  register.setEstado(text);
-                },
-                cursorColor: const Color.fromARGB(0, 4, 197, 52),
-                decoration: const InputDecoration(
-                  focusColor: Color.fromARGB(0, 4, 197, 52),
-                  //icon: Icon(
-                  //  Icons.streetview,
-                  //   color: Color.fromARGB(255, 4, 197, 52),
-                  // ),
-                  hintText: "",
-                  enabledBorder: InputBorder.none,
-                  focusedBorder: InputBorder.none,
-                ),
-              ),
-            ), */
             GestureDetector(
               onTap: () {
                 Navigator.pushNamedAndRemoveUntil(
@@ -317,7 +318,7 @@ class InitState extends State<SignUpScreenDriver> {
                   borderRadius: BorderRadius.circular(50),
                   color: Colors.grey[200],
                 ),
-                child: Text(
+                child: const Text(
                   "CADASTRAR",
                   style: TextStyle(color: Colors.black),
                 ),

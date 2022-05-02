@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Hub.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -18,7 +17,7 @@ class registro {
   }
 
   int getNumero() {
-    return this.numero;
+    return numero;
   }
 
   setCep(int cep) {
@@ -26,7 +25,7 @@ class registro {
   }
 
   int getCep() {
-    return this.cep;
+    return cep;
   }
 
   setNomeOng(String nomeOng) {
@@ -34,7 +33,7 @@ class registro {
   }
 
   String getNomeOng() {
-    return this.nomeOng;
+    return nomeOng;
   }
 
   setNomeDiretora(String nomeDiretora) {
@@ -42,7 +41,7 @@ class registro {
   }
 
   String getNomeDiretora() {
-    return this.nomeDiretora;
+    return nomeDiretora;
   }
 
   setRua(String rua) {
@@ -50,7 +49,7 @@ class registro {
   }
 
   String getRua() {
-    return this.rua;
+    return rua;
   }
 
   setBairro(String bairro) {
@@ -58,7 +57,7 @@ class registro {
   }
 
   String getBairro() {
-    return this.bairro;
+    return bairro;
   }
 
   setCidade(String cidade) {
@@ -66,7 +65,7 @@ class registro {
   }
 
   String getCidade() {
-    return this.cidade;
+    return cidade;
   }
 
   setEstado(String estado) {
@@ -74,7 +73,7 @@ class registro {
   }
 
   String getEstado() {
-    return this.estado;
+    return estado;
   }
 }
 
@@ -398,7 +397,7 @@ class InitState extends State<SignUpScreen> {
                   borderRadius: BorderRadius.circular(50),
                   color: Colors.grey[200],
                 ),
-                child: Text(
+                child: const Text(
                   "CADASTRAR",
                   style: TextStyle(color: Colors.black),
                 ),

@@ -1,13 +1,16 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 
-class acessoProdutos extends StatefulWidget {
-  const acessoProdutos({Key? key}) : super(key: key);
+class AcessoProdutos extends StatefulWidget {
+  const AcessoProdutos({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => InitState();
 }
 
-class InitState extends State<acessoProdutos> {
+class InitState extends State<AcessoProdutos> {
+  @override
   Widget build(BuildContext context) => initWidget();
   Widget initWidget() {
     return Scaffold(

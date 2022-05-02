@@ -1,5 +1,6 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Hub.dart';
 
 class SignUpScreenProduct extends StatefulWidget {
   const SignUpScreenProduct({Key? key}) : super(key: key);
@@ -11,7 +12,7 @@ class SignUpScreenProduct extends StatefulWidget {
 // ignore: camel_case_types
 class registroProduto {
   late int codProduto;
-  late bool perecivel;
+  late bool perecivel = true;
   late String nome, fornecedor, lote;
   int getCodProduto() => codProduto;
   setCodProduto(int codProduto) => this.codProduto = codProduto;
@@ -27,10 +28,8 @@ class registroProduto {
 
 class InitState extends State<SignUpScreenProduct> {
   registroProduto register = registroProduto();
-
   @override
   Widget build(BuildContext context) => initWidget();
-
   Widget initWidget() {
     return Scaffold(
         appBar: AppBar(),
@@ -97,38 +96,6 @@ class InitState extends State<SignUpScreenProduct> {
                     color: Color.fromARGB(255, 4, 197, 52),
                   ),
                   hintText: "Código do Produto",
-                  enabledBorder: InputBorder.none,
-                  focusedBorder: InputBorder.none,
-                ),
-              ),
-            ),
-            Container(
-              alignment: Alignment.center,
-              margin: const EdgeInsets.only(left: 20, right: 20, top: 20),
-              padding: const EdgeInsets.only(left: 20, right: 20),
-              height: 54,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(50),
-                color: const Color(0xffEEEEEE),
-                boxShadow: const [
-                  BoxShadow(
-                      offset: Offset(0, 20),
-                      blurRadius: 100,
-                      color: Color.fromARGB(255, 17, 101, 48)),
-                ],
-              ),
-              child: TextField(
-                onChanged: (String text) async {
-                  register.setPerecivel(true);
-                },
-                cursorColor: const Color.fromARGB(0, 4, 197, 52),
-                decoration: const InputDecoration(
-                  focusColor: Color.fromARGB(0, 4, 197, 52),
-                  icon: Icon(
-                    Icons.check,
-                    color: Color.fromARGB(255, 4, 197, 52),
-                  ),
-                  hintText: "Perecível(S/N)",
                   enabledBorder: InputBorder.none,
                   focusedBorder: InputBorder.none,
                 ),
@@ -230,6 +197,33 @@ class InitState extends State<SignUpScreenProduct> {
                 ),
               ),
             ),
+            Container(
+              alignment: Alignment.center,
+              margin: const EdgeInsets.only(left: 20, right: 20, top: 20),
+              padding: const EdgeInsets.only(left: 20, right: 20),
+              height: 54,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(50),
+                color: const Color(0xffEEEEEE),
+                boxShadow: const [
+                  BoxShadow(
+                      offset: Offset(0, 20),
+                      blurRadius: 100,
+                      color: Color.fromARGB(255, 17, 101, 48)),
+                ],
+              ),
+              child: SwitchListTile(
+                title: const Text(
+                  'Perecível',
+                ),
+                value: register.getPerecivel(),
+                onChanged: (bool value) {
+                  setState(() {
+                    register.setPerecivel(value);
+                  });
+                },
+              ),
+            ),
             GestureDetector(
               onTap: () {
                 Navigator.pushNamedAndRemoveUntil(
@@ -250,7 +244,7 @@ class InitState extends State<SignUpScreenProduct> {
                   borderRadius: BorderRadius.circular(50),
                   color: Colors.grey[200],
                 ),
-                child: Text(
+                child: const Text(
                   "CADASTRAR",
                   style: TextStyle(color: Colors.black),
                 ),
