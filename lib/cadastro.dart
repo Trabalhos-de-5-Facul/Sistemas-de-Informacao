@@ -81,7 +81,7 @@ class registro {
 registro register = registro();
 
 postOng() async {
-  var url = Uri.parse("http://192.168.15.45:3000/ongs");
+  var url = Uri.parse("http://192.168.15.59:3000/ongs");
   try {
     var response = await http.post(url, body: {
       'nome': register.getNomeOng(),
