@@ -4,75 +4,66 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-import 'DetalhesONG.dart';
+import 'DetalhesFuncionario.dart';
 
-Ong ongFromJson(String str) => Ong.fromJson(json.decode(str));
+Funcionario funcFromJson(String str) => Funcionario.fromJson(json.decode(str));
 
-String ongToJson(Ong data) => json.encode(data.toJson());
+String funcToJson(Funcionario data) => json.encode(data.toJson());
 
-class Ong {
-  Ong({
+class Funcionario {
+  Funcionario({
     required this.nome,
     required this.codOng,
-    required this.rua,
-    required this.numero,
-    required this.bairro,
-    required this.cidade,
-    required this.estado,
-    required this.cep,
-    required this.nomeDiretora,
+    required this.rg,
+    required this.cpf,
+    required this.telefone,
+    required this.endereco,
   });
   late String nome;
   late int? codOng;
-  late String rua;
-  late int? numero;
-  late String bairro;
-  late String cidade;
-  late String estado;
-  late String cep;
-  late String nomeDiretora;
+  late String rg;
+  late int? cpf;
+  late String telefone;
+  late String endereco;
 
-  factory Ong.fromJson(Map<String, dynamic> json) => Ong(
+  factory Funcionario.fromJson(Map<String, dynamic> json) => Funcionario(
         nome: json["Nome"],
-        codOng: json["COD_ONG"],
-        rua: json["Rua"],
-        numero: json["Numero"],
-        bairro: json["Bairro"],
-        cidade: json["Cidade"],
-        estado: json["Estado"],
-        cep: json["CEP"],
-        nomeDiretora: json["Nome_Diretora"],
+        codOng: json["fk_ONGs_COD_ONG"],
+        rg: json["RG"],
+        cpf: json["CPF_FUNCIONARIO"],
+        telefone: json["Telefone"],
+        endereco: json["Endereco"],
       );
 
   Map<String, dynamic> toJson() => {
         "Nome": nome,
-        "COD_ONG": codOng,
-        "Rua": rua,
-        "Numero": numero,
-        "Bairro": bairro,
-        "Cidade": cidade,
-        "Estado": estado,
-        "CEP": cep,
-        "Nome_Diretora": nomeDiretora,
+        "fk_ONGs_COD_ONG": codOng,
+        "RG": rg,
+        "CPF_FUNCIONARIO": cpf,
+        "Telefone": telefone,
+        "Endereco": endereco,
       };
 }
 
-class AcessoONG extends StatefulWidget {
-  const AcessoONG({Key? key}) : super(key: key);
+class AcessoFuncionario extends StatefulWidget {
+  const AcessoFuncionario({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => InitState();
 }
 
-class InitState extends State<AcessoONG> {
-  late List<Ong> ONGList = [];
-  Future<List<Ong>> getOng() async {
-    var url = Uri.parse("http://192.168.15.59:3000/ongs");
+class InitState extends State<AcessoFuncionario> {
+  late List<Funcionario> funcionarioList = [];
+  Future<List<Funcionario>> getOng() async {
+    var url = Uri.parse("http://192.168.15.59:3000/funcionarios");
     var response = await http.get(url);
 
     var json = jsonDecode(response.body);
-    ONGList = (json["ongs"] as List).map((i) => Ong.fromJson(i)).toList();
-    return ONGList;
+    print(json);
+    funcionarioList = (json["funcionarios"] as List)
+        .map((i) => Funcionario.fromJson(i))
+        .toList();
+    return funcionarioList;
   }
 
   @override
@@ -83,7 +74,7 @@ class InitState extends State<AcessoONG> {
         backgroundColor: const Color.fromARGB(255, 177, 216, 183),
         body: FutureBuilder(
             future: getOng(),
-            builder: (context, AsyncSnapshot<List<Ong>> snapshot) {
+            builder: (context, AsyncSnapshot<List<Funcionario>> snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const Center(
                   child: CircularProgressIndicator(),
@@ -99,8 +90,8 @@ class InitState extends State<AcessoONG> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (_) => MyDetails(
-                                          ongs: snapshot.data![index],
+                                    builder: (_) => MyDetailsFunc(
+                                          funcionarios: snapshot.data![index],
                                         )));
                           },
                         ),

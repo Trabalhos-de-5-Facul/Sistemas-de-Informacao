@@ -10,16 +10,17 @@ class Login extends StatefulWidget {
 class InitState extends State<Login> {
   late String usuario;
   late String senha;
+  @override
   Widget build(BuildContext context) => initWidget();
   Widget initWidget() {
     return Scaffold(
-        backgroundColor: Color.fromARGB(255, 177, 216, 183),
+        backgroundColor: const Color.fromARGB(255, 177, 216, 183),
         body: SingleChildScrollView(
             child: Column(
           children: [
             Container(
               height: 200,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(30),
                     bottomRight: Radius.circular(30)),
@@ -39,7 +40,7 @@ class InitState extends State<Login> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
-                    margin: EdgeInsets.only(top: 10),
+                    margin: const EdgeInsets.only(top: 10),
                     child: Image.asset(
                       "images/icone-utilisateur-vert.png",
                       height: 90,
@@ -51,8 +52,8 @@ class InitState extends State<Login> {
             ),
             Container(
               alignment: Alignment.center,
-              margin: EdgeInsets.only(left: 20, right: 20, top: 150),
-              padding: EdgeInsets.only(left: 20, right: 20),
+              margin: const EdgeInsets.only(left: 20, right: 20, top: 150),
+              padding: const EdgeInsets.only(left: 20, right: 20),
               height: 54,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(50),
@@ -62,8 +63,8 @@ class InitState extends State<Login> {
                 onChanged: (String text) async {
                   usuario = text;
                 },
-                cursorColor: Color.fromARGB(255, 40, 136, 107),
-                decoration: InputDecoration(
+                cursorColor: const Color.fromARGB(255, 40, 136, 107),
+                decoration: const InputDecoration(
                   icon: Icon(
                     Icons.email,
                     color: Color.fromARGB(255, 40, 136, 107),
@@ -76,8 +77,8 @@ class InitState extends State<Login> {
             ),
             Container(
               alignment: Alignment.center,
-              margin: EdgeInsets.only(left: 20, right: 20, top: 20),
-              padding: EdgeInsets.only(left: 20, right: 20),
+              margin: const EdgeInsets.only(left: 20, right: 20, top: 20),
+              padding: const EdgeInsets.only(left: 20, right: 20),
               height: 54,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(50),
@@ -87,8 +88,8 @@ class InitState extends State<Login> {
                 onChanged: (String text) async {
                   senha = text;
                 },
-                cursorColor: Color.fromARGB(255, 40, 136, 107),
-                decoration: InputDecoration(
+                cursorColor: const Color.fromARGB(255, 40, 136, 107),
+                decoration: const InputDecoration(
                   focusColor: Color.fromARGB(255, 40, 136, 107),
                   icon: Icon(
                     Icons.vpn_key,
@@ -106,18 +107,18 @@ class InitState extends State<Login> {
               },
               child: Container(
                 alignment: Alignment.center,
-                margin: EdgeInsets.only(left: 20, right: 20, top: 200),
-                padding: EdgeInsets.only(left: 20, right: 20),
+                margin: const EdgeInsets.only(left: 20, right: 20, top: 200),
+                padding: const EdgeInsets.only(left: 20, right: 20),
                 height: 54,
                 decoration: BoxDecoration(
-                  gradient: LinearGradient(colors: [
+                  gradient: const LinearGradient(colors: [
                     (Color.fromARGB(255, 40, 136, 107)),
                     Color.fromARGB(255, 17, 101, 48),
                   ], begin: Alignment.centerLeft, end: Alignment.centerRight),
                   borderRadius: BorderRadius.circular(50),
                   color: Colors.grey[200],
                 ),
-                child: Text(
+                child: const Text(
                   "LOGIN",
                   style: TextStyle(color: Colors.white),
                 ),

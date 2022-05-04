@@ -9,6 +9,7 @@ class HubAdmin extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Voltar'),
+        backgroundColor: Color.fromARGB(255, 17, 101, 48),
       ),
       backgroundColor: const Color.fromARGB(255, 177, 216, 183),
       body: Center(
@@ -38,7 +39,7 @@ class HubAdmin extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.red,
+                      primary: const Color.fromARGB(255, 17, 101, 48),
                     ),
                   ),
                 ),
@@ -114,7 +115,7 @@ class HubAdmin extends StatelessWidget {
                     },
                     child: const Text('Acessar ONG'),
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.red,
+                      primary: const Color.fromARGB(255, 17, 101, 48),
                     ),
                   ),
                 ),

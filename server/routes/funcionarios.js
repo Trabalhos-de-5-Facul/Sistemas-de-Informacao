@@ -33,13 +33,14 @@ router.post("/", (req, res, next) => {
       return res.status(500).send({ erro: err });
     }
     conn.query(
-      "INSERT INTO funcionarios_ongs (CPF_FUNCIONARIO, Nome, RG, Telefone, Endereco) VALUES (?,?,?,?)",
+      "INSERT INTO funcionarios_ongs (CPF_FUNCIONARIO, Nome, RG, Telefone, Endereco, fk_ONGs_COD_ONG) VALUES (?,?,?,?,?)",
       [
         req.body.cpf,
         req.body.nome,
         req.body.rg,
         req.body.telefone,
         req.body.endereco,
+        req.body.cod_ong,
       ],
       (err, result, field) => {
         conn.release();
