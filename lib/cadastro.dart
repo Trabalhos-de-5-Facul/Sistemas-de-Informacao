@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import 'ip.dart';
+
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
 
@@ -81,9 +83,8 @@ class registro {
 registro register = registro();
 
 postOng() async {
-  var url = Uri.parse("http://192.168.15.59:3000/ongs");
   try {
-    var response = await http.post(url, body: {
+    var response = await http.post(urlOngs, body: {
       'nome': register.getNomeOng(),
       'rua': register.getRua(),
       'numero': register.getNumero().toString(),

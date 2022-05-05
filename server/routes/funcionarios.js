@@ -61,14 +61,14 @@ router.post("/", (req, res, next) => {
 });
 
 // Rota para acessar as informações de um funcionário específico
-router.get("/:cpf", (req, res, next) => {
+router.get("/:cod_ong", (req, res, next) => {
   db.getConnection((err, conn) => {
     if (err) {
       return res.status(500).send({ erro: err });
     }
     conn.query(
-      "SELECT * FROM funcionarios_ongs WHERE CPF_FUNCIONARIO = ?",
-      [req.params.cpf],
+      "SELECT * FROM funcionarios_ongs WHERE fk_ONGs_COD_ONG = ?",
+      [req.params.cod_ong],
       (err, result, field) => {
         conn.release();
         if (err) {
@@ -76,13 +76,13 @@ router.get("/:cpf", (req, res, next) => {
         }
         if (result.length == 0) {
           return res.status(404).send({
-            erro: "Não foi encontrado um funcionário com esse CPF",
+            erro: "Não foi encontrado um funcionário dessa ONG",
           });
         }
         return res.status(200).send({
           request: {
             tipo: "GET",
-            descricao: "Retorna um funcionário",
+            descricao: "Retorna funcionário(s) de uma ONG",
             url: "http://localhost:3000/funcionarios",
           },
           funcionario: result,

@@ -4,7 +4,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import 'ip.dart';
 import 'DetalhesFuncionario.dart';
+import 'CadastroFuncionario.dart';
 
 Funcionario funcFromJson(String str) => Funcionario.fromJson(json.decode(str));
 
@@ -55,8 +57,7 @@ class AcessoFuncionario extends StatefulWidget {
 class InitState extends State<AcessoFuncionario> {
   late List<Funcionario> funcionarioList = [];
   Future<List<Funcionario>> getOng() async {
-    var url = Uri.parse("http://192.168.15.59:3000/funcionarios");
-    var response = await http.get(url);
+    var response = await http.get(urlFuncionarios);
 
     var json = jsonDecode(response.body);
     print(json);

@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 
+import 'ip.dart';
+
 class SignUpScreenFuncionario extends StatefulWidget {
   const SignUpScreenFuncionario({Key? key}) : super(key: key);
 

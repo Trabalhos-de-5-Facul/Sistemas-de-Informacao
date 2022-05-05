@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import 'ip.dart';
 import 'DetalhesONG.dart';
 
 Ong ongFromJson(String str) => Ong.fromJson(json.decode(str));
@@ -67,8 +68,7 @@ class AcessoONG extends StatefulWidget {
 class InitState extends State<AcessoONG> {
   late List<Ong> ONGList = [];
   Future<List<Ong>> getOng() async {
-    var url = Uri.parse("http://192.168.15.59:3000/ongs");
-    var response = await http.get(url);
+    var response = await http.get(urlOngs);
 
     var json = jsonDecode(response.body);
     ONGList = (json["ongs"] as List).map((i) => Ong.fromJson(i)).toList();
