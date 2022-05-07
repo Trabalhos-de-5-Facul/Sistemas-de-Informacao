@@ -5,30 +5,33 @@ import 'package:flutter/material.dart';
 import 'ip.dart';
 
 class SignUpScreenFuncionario extends StatefulWidget {
-  const SignUpScreenFuncionario({Key? key}) : super(key: key);
+  final int codigoOng;
+  SignUpScreenFuncionario({
+    required this.codigoOng,
+  });
 
   @override
   State<StatefulWidget> createState() => InitState();
 }
 
 // ignore: camel_case_types
-class registro {
-  late String nomeMotorista, cpfMotorista, telefone, rg, endereco, senha;
-
-  setNomeMotorista(String nomeMotorista) {
-    this.nomeMotorista = nomeMotorista;
+class registroFunc {
+  late String nomeFuncionario, rg, telefone, endereco;
+  late int codigoOng, cpf;
+  setNomeFuncionario(String nomeFuncionario) {
+    this.nomeFuncionario = nomeFuncionario;
   }
 
-  String getNomeMotorista() {
-    return nomeMotorista;
+  String getNomeFuncionario() {
+    return nomeFuncionario;
   }
 
-  setCpfMotorista(String cpfMotorista) {
-    this.cpfMotorista = cpfMotorista;
+  setCpfFuncionario(int cpf) {
+    this.cpf = cpf;
   }
 
-  String getCpfMotorista() {
-    return cpfMotorista;
+  int getCpfFuncionario() {
+    return cpf;
   }
 
   setTelefone(String telefone) {
@@ -55,22 +58,23 @@ class registro {
     return endereco;
   }
 
-  setSenha(String senha) {
-    this.senha = senha;
+  setCodigoOng(int codigo) {
+    this.codigoOng = codigo;
   }
 
-  String getSenha() {
-    return senha;
+  int getCodigoOng() {
+    return codigoOng;
   }
 }
 
-registro register = registro();
+registroFunc register = registroFunc();
 
 class InitState extends State<SignUpScreenFuncionario> {
   @override
   Widget build(BuildContext context) => initWidget();
 
   Widget initWidget() {
+    register.setCodigoOng(widget.codigoOng);
     return Scaffold(
         appBar: AppBar(),
         backgroundColor: const Color.fromARGB(255, 177, 216, 183),
@@ -126,7 +130,7 @@ class InitState extends State<SignUpScreenFuncionario> {
               ),
               child: TextField(
                 onChanged: (String text) async {
-                  register.setNomeMotorista(text);
+                  register.setNomeFuncionario(text);
                 },
                 cursorColor: const Color(0xffF5591F),
                 decoration: const InputDecoration(
@@ -134,39 +138,7 @@ class InitState extends State<SignUpScreenFuncionario> {
                     Icons.face,
                     color: Color.fromARGB(255, 4, 197, 52),
                   ),
-                  hintText: "Nome do Motorista",
-                  enabledBorder: InputBorder.none,
-                  focusedBorder: InputBorder.none,
-                ),
-              ),
-            ),
-            Container(
-              alignment: Alignment.center,
-              margin: const EdgeInsets.only(left: 20, right: 20, top: 20),
-              padding: const EdgeInsets.only(left: 20, right: 20),
-              height: 54,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(50),
-                color: const Color(0xffEEEEEE),
-                boxShadow: const [
-                  BoxShadow(
-                      offset: Offset(0, 20),
-                      blurRadius: 100,
-                      color: Color.fromARGB(255, 17, 101, 48)),
-                ],
-              ),
-              child: TextField(
-                onChanged: (String text) async {
-                  register.setCpfMotorista(text);
-                },
-                cursorColor: const Color.fromARGB(0, 4, 197, 52),
-                decoration: const InputDecoration(
-                  focusColor: Color.fromARGB(0, 4, 197, 52),
-                  icon: Icon(
-                    Icons.person,
-                    color: Color.fromARGB(255, 4, 197, 52),
-                  ),
-                  hintText: "CPF",
+                  hintText: "Nome do Funcionário",
                   enabledBorder: InputBorder.none,
                   focusedBorder: InputBorder.none,
                 ),
@@ -195,10 +167,42 @@ class InitState extends State<SignUpScreenFuncionario> {
                 decoration: const InputDecoration(
                   focusColor: Color.fromARGB(0, 4, 197, 52),
                   icon: Icon(
-                    Icons.assignment_rounded,
+                    Icons.person,
                     color: Color.fromARGB(255, 4, 197, 52),
                   ),
                   hintText: "RG",
+                  enabledBorder: InputBorder.none,
+                  focusedBorder: InputBorder.none,
+                ),
+              ),
+            ),
+            Container(
+              alignment: Alignment.center,
+              margin: const EdgeInsets.only(left: 20, right: 20, top: 20),
+              padding: const EdgeInsets.only(left: 20, right: 20),
+              height: 54,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(50),
+                color: const Color(0xffEEEEEE),
+                boxShadow: const [
+                  BoxShadow(
+                      offset: Offset(0, 20),
+                      blurRadius: 100,
+                      color: Color.fromARGB(255, 17, 101, 48)),
+                ],
+              ),
+              child: TextField(
+                onChanged: (String text) async {
+                  register.setCpfFuncionario(int.parse(text));
+                },
+                cursorColor: const Color.fromARGB(0, 4, 197, 52),
+                decoration: const InputDecoration(
+                  focusColor: Color.fromARGB(0, 4, 197, 52),
+                  icon: Icon(
+                    Icons.assignment_rounded,
+                    color: Color.fromARGB(255, 4, 197, 52),
+                  ),
+                  hintText: "CPF",
                   enabledBorder: InputBorder.none,
                   focusedBorder: InputBorder.none,
                 ),
@@ -263,38 +267,6 @@ class InitState extends State<SignUpScreenFuncionario> {
                     color: Color.fromARGB(255, 4, 197, 52),
                   ),
                   hintText: "Endereço",
-                  enabledBorder: InputBorder.none,
-                  focusedBorder: InputBorder.none,
-                ),
-              ),
-            ),
-            Container(
-              alignment: Alignment.center,
-              margin: const EdgeInsets.only(left: 20, right: 20, top: 20),
-              padding: const EdgeInsets.only(left: 20, right: 20),
-              height: 54,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(50),
-                color: const Color(0xffEEEEEE),
-                boxShadow: const [
-                  BoxShadow(
-                      offset: Offset(0, 20),
-                      blurRadius: 100,
-                      color: Color.fromARGB(255, 17, 101, 48)),
-                ],
-              ),
-              child: TextField(
-                onChanged: (String text) async {
-                  register.setSenha(text);
-                },
-                cursorColor: const Color.fromARGB(0, 4, 197, 52),
-                decoration: const InputDecoration(
-                  focusColor: Color.fromARGB(0, 4, 197, 52),
-                  icon: Icon(
-                    Icons.lock,
-                    color: Color.fromARGB(255, 4, 197, 52),
-                  ),
-                  hintText: "Senha",
                   enabledBorder: InputBorder.none,
                   focusedBorder: InputBorder.none,
                 ),

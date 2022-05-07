@@ -1,5 +1,3 @@
-// ignore_for_file: file_names
-
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -47,8 +45,11 @@ class Funcionario {
       };
 }
 
+int? um = 1;
+
 class AcessoFuncionario extends StatefulWidget {
-  const AcessoFuncionario({Key? key}) : super(key: key);
+  final codOng;
+  AcessoFuncionario({required this.codOng});
 
   @override
   State<StatefulWidget> createState() => InitState();
@@ -56,7 +57,7 @@ class AcessoFuncionario extends StatefulWidget {
 
 class InitState extends State<AcessoFuncionario> {
   late List<Funcionario> funcionarioList = [];
-  Future<List<Funcionario>> getOng() async {
+  Future<List<Funcionario>> getFunc() async {
     var response = await http.get(urlFuncionarios);
 
     var json = jsonDecode(response.body);
@@ -69,34 +70,69 @@ class InitState extends State<AcessoFuncionario> {
 
   @override
   Widget build(BuildContext context) {
-    getOng();
+    getFunc();
     return Scaffold(
-        appBar: AppBar(),
-        backgroundColor: const Color.fromARGB(255, 177, 216, 183),
-        body: FutureBuilder(
-            future: getOng(),
-            builder: (context, AsyncSnapshot<List<Funcionario>> snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              }
-              return ListView.builder(
-                  itemCount: snapshot.data?.length,
-                  itemBuilder: (BuildContext context, index) => InkWell(
-                        child: ListTile(
-                          title: Text(snapshot.data![index].nome),
-                          subtitle: Text("${snapshot.data![index].codOng}"),
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (_) => MyDetailsFunc(
-                                          funcionarios: snapshot.data![index],
-                                        )));
-                          },
-                        ),
-                      ));
-            }));
+      appBar: AppBar(),
+      backgroundColor: const Color.fromARGB(255, 177, 216, 183),
+      body: FutureBuilder(
+          future: getFunc(),
+          builder: (context, AsyncSnapshot<List<Funcionario>> snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            return Center(
+                child: Column(
+              children: [
+                Expanded(
+                  child: ListView.builder(
+                      itemCount: snapshot.data?.length,
+                      itemBuilder: (BuildContext context, index) => InkWell(
+                            child: ListTile(
+                              title: Text(snapshot.data![index].nome),
+                              subtitle: Text("${snapshot.data![index].codOng}"),
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) => MyDetailsFunc(
+                                              funcionarios:
+                                                  snapshot.data![index],
+                                            )));
+                              },
+                            ),
+                          )),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (_) => SignUpScreenFuncionario(
+                                codigoOng: widget.codOng)));
+                  },
+                  child: Container(
+                    alignment: Alignment.center,
+                    margin: EdgeInsets.symmetric(
+                        horizontal: MediaQuery.of(context).size.width * 0.35,
+                        vertical: 20),
+                    padding: const EdgeInsets.only(left: 20, right: 20),
+                    height: 54,
+                    decoration: BoxDecoration(
+                      // ignore: prefer_const_literals_to_create_immutables
+                      borderRadius: BorderRadius.circular(50),
+                      color: Colors.grey[200],
+                    ),
+                    child: const Text(
+                      "Adicionar",
+                      style: TextStyle(color: Colors.black),
+                    ),
+                  ),
+                ),
+              ],
+            ));
+          }),
+    );
   }
 }

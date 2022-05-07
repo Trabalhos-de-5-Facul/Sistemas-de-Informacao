@@ -136,7 +136,9 @@ class _MyDetailsState extends State<MyDetails> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (_) => const AcessoFuncionario()));
+                                builder: (_) => AcessoFuncionario(
+                                      codOng: widget.ongs.codOng,
+                                    )));
                       },
                       child: Container(
                         height: 25,
@@ -156,7 +158,8 @@ class _MyDetailsState extends State<MyDetails> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (_) => const AcessoFuncionario()));
+                                  builder: (_) => AcessoFuncionario(
+                                      codOng: widget.ongs.codOng)));
                         },
                         child: Container(
                           height: 25,

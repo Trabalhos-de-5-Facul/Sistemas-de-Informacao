@@ -106,7 +106,9 @@ class _MyDetailsState extends State<MyDetailsFunc> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (_) => const AcessoFuncionario()));
+                              builder: (_) => AcessoFuncionario(
+                                    codOng: null,
+                                  )));
                     },
                     child: Container(
                       height: 25,
