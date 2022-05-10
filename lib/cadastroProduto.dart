@@ -1,6 +1,11 @@
 // ignore_for_file: file_names
 
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'ip.dart';
+import 'dart:typed_data';
 
 class SignUpScreenProduct extends StatefulWidget {
   const SignUpScreenProduct({Key? key}) : super(key: key);
@@ -14,8 +19,9 @@ class registroProduto {
   late int codProduto;
   late bool perecivel = true;
   late String nome, fornecedor, lote;
-  int getCodProduto() => codProduto;
+  /*int getCodProduto() => codProduto;
   setCodProduto(int codProduto) => this.codProduto = codProduto;
+  */
   bool getPerecivel() => perecivel;
   setPerecivel(bool perecivel) => this.perecivel = perecivel;
   String getNome() => nome;
@@ -26,8 +32,29 @@ class registroProduto {
   setLote(String lote) => this.lote = lote;
 }
 
+registroProduto register = registroProduto();
+postProduto() async {
+  final String perecivel;
+  if (register.perecivel) {
+    perecivel = '1';
+  } else {
+    perecivel = '';
+  }
+  print(perecivel);
+  try {
+    var response = await http.post(urlProdutos, body: {
+      'Nome': register.getNome(),
+      'Fornecedor': register.getFornecedor(),
+      'Lote': register.getLote(),
+      'Perecivel': perecivel,
+    });
+    print(response.body);
+  } catch (e) {
+    print(e);
+  }
+}
+
 class InitState extends State<SignUpScreenProduct> {
-  registroProduto register = registroProduto();
   @override
   Widget build(BuildContext context) => initWidget();
   Widget initWidget() {
@@ -84,7 +111,7 @@ class InitState extends State<SignUpScreenProduct> {
                       color: Color.fromARGB(255, 17, 101, 48)),
                 ],
               ),
-              child: TextField(
+              /*child: TextField(
                 onChanged: (String codigoProduto) async {
                   register.setCodProduto(int.parse(
                       codigoProduto)); //pensar em como fazer isso não bugar
@@ -115,7 +142,7 @@ class InitState extends State<SignUpScreenProduct> {
                       blurRadius: 100,
                       color: Color.fromARGB(255, 17, 101, 48)),
                 ],
-              ),
+              ),*/
               child: TextField(
                 onChanged: (String text) async {
                   register.setNome(text);
@@ -226,6 +253,7 @@ class InitState extends State<SignUpScreenProduct> {
             ),
             GestureDetector(
               onTap: () {
+                postProduto();
                 Navigator.pushNamedAndRemoveUntil(
                     context,
                     '/Hub Admin',

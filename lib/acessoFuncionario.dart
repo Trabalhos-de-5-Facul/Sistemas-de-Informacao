@@ -115,8 +115,8 @@ class InitState extends State<AcessoFuncionario> {
                   child: Container(
                     alignment: Alignment.center,
                     margin: EdgeInsets.symmetric(
-                        horizontal: MediaQuery.of(context).size.width * 0.35,
-                        vertical: 20),
+                      horizontal: MediaQuery.of(context).size.width * 0.35,
+                    ),
                     padding: const EdgeInsets.only(left: 20, right: 20),
                     height: 54,
                     decoration: BoxDecoration(
@@ -130,6 +130,7 @@ class InitState extends State<AcessoFuncionario> {
                     ),
                   ),
                 ),
+                SizedBox(height: 20),
               ],
             ));
           }),

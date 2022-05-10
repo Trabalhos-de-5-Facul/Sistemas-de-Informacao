@@ -64,7 +64,7 @@ class HubAdmin extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.red,
+                      primary: Color.fromARGB(255, 17, 101, 48),
                     ),
                   ),
                 ),
@@ -133,7 +133,7 @@ class HubAdmin extends StatelessWidget {
                     },
                     child: const Text('Acessar Produto'),
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.red,
+                      primary: Color.fromARGB(255, 17, 101, 48),
                     ),
                   ),
                 ),
