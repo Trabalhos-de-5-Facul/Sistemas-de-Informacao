@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, prefer_typing_uninitialized_variables, use_key_in_widget_constructors
+
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -49,7 +51,7 @@ int? um = 1;
 
 class AcessoFuncionario extends StatefulWidget {
   final codOng;
-  AcessoFuncionario({required this.codOng});
+  const AcessoFuncionario({required this.codOng});
 
   @override
   State<StatefulWidget> createState() => InitState();
@@ -61,7 +63,6 @@ class InitState extends State<AcessoFuncionario> {
     var response = await http.get(urlFuncionarios);
 
     var json = jsonDecode(response.body);
-    print(json);
     funcionarioList = (json["funcionarios"] as List)
         .map((i) => Funcionario.fromJson(i))
         .toList();
@@ -130,7 +131,7 @@ class InitState extends State<AcessoFuncionario> {
                     ),
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
               ],
             ));
           }),

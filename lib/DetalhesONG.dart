@@ -1,7 +1,7 @@
+// ignore_for_file: file_names, use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/CadastroFuncionario.dart';
 import 'package:flutter_application_1/acessoOng.dart';
-import 'package:http/http.dart' as http;
 
 import 'acessoFuncionario.dart';
 

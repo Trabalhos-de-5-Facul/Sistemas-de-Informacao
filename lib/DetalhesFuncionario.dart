@@ -1,7 +1,7 @@
+// ignore_for_file: file_names, use_key_in_widget_constructors, prefer_const_constructors
+
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/CadastroFuncionario.dart';
 import 'package:flutter_application_1/acessoFuncionario.dart';
-import 'package:http/http.dart' as http;
 
 class MyDetailsFunc extends StatefulWidget {
   final Funcionario funcionarios;

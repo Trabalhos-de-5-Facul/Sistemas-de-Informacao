@@ -1,12 +1,10 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
 
-import 'ip.dart';
-
 class SignUpScreenFuncionario extends StatefulWidget {
   final int codigoOng;
-  SignUpScreenFuncionario({
+  const SignUpScreenFuncionario({
     required this.codigoOng,
   });
 
@@ -59,7 +57,7 @@ class registroFunc {
   }
 
   setCodigoOng(int codigo) {
-    this.codigoOng = codigo;
+    codigoOng = codigo;
   }
 
   int getCodigoOng() {

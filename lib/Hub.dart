@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 
 //essa função é um placeholder
@@ -9,7 +11,7 @@ class HubAdmin extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Voltar'),
-        backgroundColor: Color.fromARGB(255, 17, 101, 48),
+        backgroundColor: const Color.fromARGB(255, 17, 101, 48),
       ),
       backgroundColor: const Color.fromARGB(255, 177, 216, 183),
       body: Center(
@@ -64,7 +66,7 @@ class HubAdmin extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                     style: ElevatedButton.styleFrom(
-                      primary: Color.fromARGB(255, 17, 101, 48),
+                      primary: const Color.fromARGB(255, 17, 101, 48),
                     ),
                   ),
                 ),
@@ -133,7 +135,7 @@ class HubAdmin extends StatelessWidget {
                     },
                     child: const Text('Acessar Produto'),
                     style: ElevatedButton.styleFrom(
-                      primary: Color.fromARGB(255, 17, 101, 48),
+                      primary: const Color.fromARGB(255, 17, 101, 48),
                     ),
                   ),
                 ),

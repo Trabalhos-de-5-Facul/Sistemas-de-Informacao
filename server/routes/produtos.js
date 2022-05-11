@@ -58,7 +58,7 @@ router.post("/", (req, res, next) => {
     );
   });
 });
-
+/*
 // Rota para acessar as informações de uma ONG específica
 router.get("/:cod_ong", (req, res, next) => {
   db.getConnection((err, conn) => {
@@ -163,5 +163,5 @@ router.delete("/", (req, res, next) => {
     );
   });
 });
-
+*/
 module.exports = router;

@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -94,10 +96,8 @@ postOng() async {
       'cep': register.getCep().toString(),
       'nome_diretora': register.getNomeDiretora()
     });
-    print(response.body);
-  } catch (e) {
-    print(e);
-  }
+    // ignore: empty_catches
+  } catch (e) {}
 }
 
 class InitState extends State<SignUpScreen> {

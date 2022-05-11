@@ -1,11 +1,8 @@
-// ignore_for_file: file_names
-
-import 'dart:ffi';
+// ignore_for_file: file_names, empty_catches, unused_local_variable
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'ip.dart';
-import 'dart:typed_data';
 
 class SignUpScreenProduct extends StatefulWidget {
   const SignUpScreenProduct({Key? key}) : super(key: key);
@@ -40,7 +37,6 @@ postProduto() async {
   } else {
     perecivel = '';
   }
-  print(perecivel);
   try {
     var response = await http.post(urlProdutos, body: {
       'Nome': register.getNome(),
@@ -48,10 +44,7 @@ postProduto() async {
       'Lote': register.getLote(),
       'Perecivel': perecivel,
     });
-    print(response.body);
-  } catch (e) {
-    print(e);
-  }
+  } catch (e) {}
 }
 
 class InitState extends State<SignUpScreenProduct> {

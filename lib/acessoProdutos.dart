@@ -1,26 +1,15 @@
 // ignore_for_file: file_names
 
 import 'dart:convert';
-import 'dart:ffi';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Hub.dart';
+import 'package:flutter_application_1/detalhesProduto.dart';
 import 'package:http/http.dart' as http;
 
-import 'DetalhesONG.dart';
 import 'ip.dart';
 
 Produto produtoFromJson(String str) => Produto.fromJson(json.decode(str));
 
 String produtoToJson(Produto data) => json.encode(data.toJson());
-
-class perecivel {
-  perecivel({
-    required this.buffer,
-    required this.data,
-  });
-  late String buffer;
-  late Bool data;
-}
 
 class Produto {
   Produto({
@@ -91,8 +80,11 @@ class InitState extends State<AcessoProdutos> {
                           title: Text(snapshot.data![index].nome),
                           subtitle: Text("${snapshot.data![index].codProduto}"),
                           onTap: () {
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (_) => HubAdmin()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => MyDetailsProd(
+                                        produto: snapshot.data![index])));
                           },
                         ),
                       ));
