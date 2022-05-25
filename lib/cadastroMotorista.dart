@@ -1,6 +1,8 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/ip.dart';
+import 'package:http/http.dart' as http;
 
 class SignUpScreenDriver extends StatefulWidget {
   const SignUpScreenDriver({Key? key}) : super(key: key);
@@ -10,7 +12,7 @@ class SignUpScreenDriver extends StatefulWidget {
 }
 
 // ignore: camel_case_types
-class registro {
+class registroMotorista {
   late String nomeMotorista, cpfMotorista, telefone, rg, endereco, senha;
 
   setNomeMotorista(String nomeMotorista) {
@@ -62,7 +64,18 @@ class registro {
   }
 }
 
-registro register = registro();
+registroMotorista register = registroMotorista();
+postMotorista() async {
+  try {
+    var response = await http.post(urlMotoristas, body: {
+      'Nome': register.getNomeMotorista(),
+      'RG': register.getRG(),
+      'CPF_FUNCIONARIO': register.getCpfMotorista(),
+      'Telefone': register.getTelefone(),
+      'Endereco': register.getEndereco()
+    });
+  } catch (e) {}
+}
 
 class InitState extends State<SignUpScreenDriver> {
   @override
@@ -266,40 +279,41 @@ class InitState extends State<SignUpScreenDriver> {
                 ),
               ),
             ),
-            Container(
-              alignment: Alignment.center,
-              margin: const EdgeInsets.only(left: 20, right: 20, top: 20),
-              padding: const EdgeInsets.only(left: 20, right: 20),
-              height: 54,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(50),
-                color: const Color(0xffEEEEEE),
-                boxShadow: const [
-                  BoxShadow(
-                      offset: Offset(0, 20),
-                      blurRadius: 100,
-                      color: Color.fromARGB(255, 17, 101, 48)),
-                ],
-              ),
-              child: TextField(
-                onChanged: (String text) async {
-                  register.setSenha(text);
-                },
-                cursorColor: const Color.fromARGB(0, 4, 197, 52),
-                decoration: const InputDecoration(
-                  focusColor: Color.fromARGB(0, 4, 197, 52),
-                  icon: Icon(
-                    Icons.lock,
-                    color: Color.fromARGB(255, 4, 197, 52),
-                  ),
-                  hintText: "Senha",
-                  enabledBorder: InputBorder.none,
-                  focusedBorder: InputBorder.none,
-                ),
-              ),
-            ),
+            // Container(
+            //   alignment: Alignment.center,
+            //   margin: const EdgeInsets.only(left: 20, right: 20, top: 20),
+            //   padding: const EdgeInsets.only(left: 20, right: 20),
+            //   height: 54,
+            //   decoration: BoxDecoration(
+            //     borderRadius: BorderRadius.circular(50),
+            //     color: const Color(0xffEEEEEE),
+            //     boxShadow: const [
+            //       BoxShadow(
+            //           offset: Offset(0, 20),
+            //           blurRadius: 100,
+            //           color: Color.fromARGB(255, 17, 101, 48)),
+            //     ],
+            //   ),
+            //   child: TextField(
+            //     onChanged: (String text) async {
+            //       register.setSenha(text);
+            //     },
+            //     cursorColor: const Color.fromARGB(0, 4, 197, 52),
+            //     decoration: const InputDecoration(
+            //       focusColor: Color.fromARGB(0, 4, 197, 52),
+            //       icon: Icon(
+            //         Icons.lock,
+            //         color: Color.fromARGB(255, 4, 197, 52),
+            //       ),
+            //       hintText: "Senha",
+            //       enabledBorder: InputBorder.none,
+            //       focusedBorder: InputBorder.none,
+            //     ),
+            //   ),
+            // ),
             GestureDetector(
               onTap: () {
+                postMotorista();
                 Navigator.pushNamedAndRemoveUntil(
                     context,
                     '/Hub Admin',
