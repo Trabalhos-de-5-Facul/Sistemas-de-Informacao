@@ -8,6 +8,8 @@ const rotaFuncionarios = require("./routes/funcionarios");
 const rotaProdutos = require("./routes/produtos");
 const rotaMotoristas = require("./routes/motoristas");
 const rotaRomaneios = require("./routes/romaneios");
+const rotaRemessas = require("./routes/remessas");
+
 // Uso do Morgan para monitoramento de requisições
 app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extended: false })); // Para dados simples
@@ -34,6 +36,8 @@ app.use("/funcionarios", rotaFuncionarios);
 app.use("/produtos", rotaProdutos);
 app.use("/motoristas", rotaMotoristas);
 app.use("/romaneios", rotaRomaneios);
+app.use("/remessas", rotaRemessas);
+
 // Tratamento de erro ao não encontrar uma Rota válida
 app.use((req, res, next) => {
   const erro = new Error("Rota não encontrada.");
