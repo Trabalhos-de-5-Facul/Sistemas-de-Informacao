@@ -2,13 +2,13 @@ const express = require("express");
 const router = express.Router();
 const db = require("../db").pool;
 
-// Rota para Acessar as informações de todos os funcionários cadastrados
+// Rota para Acessar as informações de todos os motoristas cadastrados
 router.get("/", (req, res, next) => {
   db.getConnection((err, conn) => {
     if (err) {
       return res.status(500).send({ erro: err });
     }
-    conn.query("SELECT * FROM funcionarios_ongs", (err, result, field) => {
+    conn.query("SELECT * FROM motoristas", (err, result, field) => {
       conn.release();
       if (err) {
         return res.status(500).send({ erro: err });
@@ -16,31 +16,30 @@ router.get("/", (req, res, next) => {
       return res.status(200).send({
         request: {
           tipo: "GET",
-          descricao: "Retorna todos os funcionários",
-          url: "http://localhost:3000/funcionarios/",
+          descricao: "Retorna todos os motoristas",
+          url: "http://localhost:3000/motoristas/",
         },
         quantidade: result.length,
-        funcionarios: result,
+        motoristas: result,
       });
     });
   });
 });
 
-// Rota para cadastrar um novo funcionário
+// Rota para cadastrar um novo motoristas
 router.post("/", (req, res, next) => {
   db.getConnection((err, conn) => {
     if (err) {
       return res.status(500).send({ erro: err });
     }
     conn.query(
-      "INSERT INTO funcionarios_ongs (CPF_FUNCIONARIO, Nome, RG, Telefone, Endereco, fk_ONGs_COD_ONG) VALUES (?,?,?,?,?,?)",
+      "INSERT INTO motoristas (CPF_FUNCIONARIO, RG, Nome, Telefone, Endereco) VALUES (?,?,?,?,?)",
       [
         req.body.cpf,
-        req.body.nome,
         req.body.rg,
+        req.body.nome,
         req.body.telefone,
         req.body.endereco,
-        req.body.cod_ong,
       ],
       (err, result, field) => {
         conn.release();
@@ -48,11 +47,11 @@ router.post("/", (req, res, next) => {
           return res.status(500).send({ erro: err });
         }
         return res.status(201).send({
-          mensagem: "Funcionário cadastrado com sucesso",
+          mensagem: "Motorista cadastrado com sucesso",
           request: {
             tipo: "POST",
-            descricao: "Cadastra um funcionário",
-            url: "http://localhost:3000/funcionarios",
+            descricao: "Cadastra um motorista",
+            url: "http://localhost:3000/motoristas",
           },
         });
       }
@@ -60,15 +59,15 @@ router.post("/", (req, res, next) => {
   });
 });
 
-// Rota para acessar as informações de um funcionário específico
-router.get("/:cod_ong", (req, res, next) => {
+// Rota para acessar as informações de um motorista específico
+router.get("/:cpf", (req, res, next) => {
   db.getConnection((err, conn) => {
     if (err) {
       return res.status(500).send({ erro: err });
     }
     conn.query(
-      "SELECT * FROM funcionarios_ongs WHERE fk_ONGs_COD_ONG = ?",
-      [req.params.cod_ong],
+      "SELECT * FROM motoristas WHERE CPF_FUNCIONARIO = ?",
+      [req.params.cpf],
       (err, result, field) => {
         conn.release();
         if (err) {
@@ -76,30 +75,30 @@ router.get("/:cod_ong", (req, res, next) => {
         }
         if (result.length == 0) {
           return res.status(404).send({
-            erro: "Não foi encontrado um funcionário dessa ONG",
+            erro: "Não foi encontrado um motorista com esse CPF",
           });
         }
         return res.status(200).send({
           request: {
             tipo: "GET",
-            descricao: "Retorna funcionário(s) de uma ONG",
-            url: "http://localhost:3000/funcionarios",
+            descricao: "Retorna um motorista pelo seu CPF",
+            url: "http://localhost:3000/motoristas",
           },
-          funcionario: result,
+          motorista: result,
         });
       }
     );
   });
 });
 
-// Rota para atualizar as informações de um funcionário
+// Rota para atualizar as informações de um motorista
 router.patch("/", (req, res, next) => {
   db.getConnection((err, conn) => {
     if (err) {
       return res.status(500).send({ erro: err });
     }
     conn.query(
-      `UPDATE funcionarios_ongs
+      `UPDATE motoristas
         SET CPF_FUNCIONARIO   = ?,
             Nome              = ?,
             RG                = ?,
@@ -120,11 +119,11 @@ router.patch("/", (req, res, next) => {
           return res.status(500).send({ erro: err });
         }
         return res.status(202).send({
-          mensagem: "Funcionário atualizado com sucesso",
+          mensagem: "Motorista atualizado com sucesso",
           request: {
             tipo: "PATCH",
-            descricao: "Atualiza um funcionário",
-            url: "http://localhost:3000/funcionarios",
+            descricao: "Atualiza um motorista",
+            url: "http://localhost:3000/motoristas",
           },
         });
       }
@@ -132,14 +131,14 @@ router.patch("/", (req, res, next) => {
   });
 });
 
-// Rota para excluir um funcionário
+// Rota para excluir um motorista
 router.delete("/", (req, res, next) => {
   db.getConnection((err, conn) => {
     if (err) {
       return res.status(500).send({ erro: err });
     }
     conn.query(
-      "DELETE FROM funcionarios_ongs WHERE CPF_FUNCIONARIO = ?",
+      "DELETE FROM motoristas WHERE CPF_FUNCIONARIO = ?",
       [req.body.cpf],
       (err, result, field) => {
         conn.release();
@@ -147,11 +146,11 @@ router.delete("/", (req, res, next) => {
           return res.status(500).send({ erro: err });
         }
         return res.status(202).send({
-          mensagem: "Funcionário removido com sucesso",
+          mensagem: "Motorista removido com sucesso",
           request: {
             tipo: "DELETE",
-            descricao: "Remove um funcionário",
-            url: "http://localhost:3000/funcionarios",
+            descricao: "Remove um motorista",
+            url: "http://localhost:3000/motoristas",
           },
         });
       }

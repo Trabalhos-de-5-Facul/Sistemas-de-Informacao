@@ -5,7 +5,8 @@ const bodyParser = require("body-parser");
 
 const rotaOngs = require("./routes/ongs");
 const rotaFuncionarios = require("./routes/funcionarios");
-const rotaProdutos = require("./routes/produtos")
+const rotaProdutos = require("./routes/produtos");
+const rotaMotoristas = require("./routes/motoristas");
 // Uso do Morgan para monitoramento de requisições
 app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extended: false })); // Para dados simples
@@ -29,7 +30,8 @@ app.use((req, res, next) => {
 // Chamada das rotas das ONGs e Funcionários na aplicação
 app.use("/ongs", rotaOngs);
 app.use("/funcionarios", rotaFuncionarios);
-app.use("/produtos",rotaProdutos);
+app.use("/produtos", rotaProdutos);
+app.use("/motoristas", rotaMotoristas);
 // Tratamento de erro ao não encontrar uma Rota válida
 app.use((req, res, next) => {
   const erro = new Error("Rota não encontrada.");
