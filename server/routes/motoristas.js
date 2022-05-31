@@ -26,7 +26,7 @@ router.get("/", (req, res, next) => {
   });
 });
 
-// Rota para cadastrar um novo motoristas
+// Rota para cadastrar um novo motorista
 router.post("/", (req, res, next) => {
   db.getConnection((err, conn) => {
     if (err) {
