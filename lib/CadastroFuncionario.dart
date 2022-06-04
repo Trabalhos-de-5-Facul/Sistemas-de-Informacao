@@ -1,6 +1,9 @@
 // ignore_for_file: file_names, use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
+import 'ip.dart';
 
 class SignUpScreenFuncionario extends StatefulWidget {
   final int codigoOng;
@@ -66,6 +69,21 @@ class registroFunc {
 }
 
 registroFunc register = registroFunc();
+postFunc() async {
+  try {
+    print("oi");
+    await http.post(urlFuncionarios, body: {
+      "cpf": register.getCpfFuncionario().toString(),
+      "nome": register.getNomeFuncionario(),
+      "rg": register.getRG(),
+      "telefone": register.getTelefone(),
+      "endereco": register.getEndereco(),
+      "cod_ong": register.getCodigoOng().toString()
+    });
+  } catch (e) {
+    print(e);
+  }
+}
 
 class InitState extends State<SignUpScreenFuncionario> {
   @override
@@ -272,6 +290,19 @@ class InitState extends State<SignUpScreenFuncionario> {
             ),
             GestureDetector(
               onTap: () {
+                print("nome:");
+                print(register.nomeFuncionario.runtimeType);
+                print("rg:");
+                print(register.rg.runtimeType);
+                print("cpf:");
+                print(register.cpf.runtimeType);
+                print("telefone:");
+                print(register.telefone.runtimeType);
+                print("endereço:");
+                print(register.endereco.runtimeType);
+                print("codigoOng:");
+                print(register.codigoOng.runtimeType);
+                postFunc();
                 Navigator.pushNamedAndRemoveUntil(
                     context,
                     '/Hub Admin',
