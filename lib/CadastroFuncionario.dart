@@ -71,7 +71,6 @@ class registroFunc {
 registroFunc register = registroFunc();
 postFunc() async {
   try {
-    print("oi");
     await http.post(urlFuncionarios, body: {
       "cpf": register.getCpfFuncionario().toString(),
       "nome": register.getNomeFuncionario(),
@@ -80,9 +79,7 @@ postFunc() async {
       "endereco": register.getEndereco(),
       "cod_ong": register.getCodigoOng().toString()
     });
-  } catch (e) {
-    print(e);
-  }
+  } catch (e) {}
 }
 
 class InitState extends State<SignUpScreenFuncionario> {
@@ -290,18 +287,6 @@ class InitState extends State<SignUpScreenFuncionario> {
             ),
             GestureDetector(
               onTap: () {
-                print("nome:");
-                print(register.nomeFuncionario.runtimeType);
-                print("rg:");
-                print(register.rg.runtimeType);
-                print("cpf:");
-                print(register.cpf.runtimeType);
-                print("telefone:");
-                print(register.telefone.runtimeType);
-                print("endereço:");
-                print(register.endereco.runtimeType);
-                print("codigoOng:");
-                print(register.codigoOng.runtimeType);
                 postFunc();
                 Navigator.pushNamedAndRemoveUntil(
                     context,

@@ -59,9 +59,14 @@ class AcessoFuncionario extends StatefulWidget {
 
 class InitState extends State<AcessoFuncionario> {
   late List<Funcionario> funcionarioList = [];
-  Future<List<Funcionario>> getFunc() async {
-    var response = await http.get(urlFuncionarios);
-
+  Future<List<Funcionario>> getFunc(widget) async {
+    var url = urlFuncionarios.toString() + "/";
+    print(url);
+    var response = await http.get(Uri.parse(url + widget.codOng.toString()));
+    if (response.statusCode == 404) {
+      funcionarioList = [];
+      return funcionarioList;
+    }
     var json = jsonDecode(response.body);
     funcionarioList = (json["funcionarios"] as List)
         .map((i) => Funcionario.fromJson(i))
@@ -71,12 +76,12 @@ class InitState extends State<AcessoFuncionario> {
 
   @override
   Widget build(BuildContext context) {
-    getFunc();
+    getFunc(widget);
     return Scaffold(
       appBar: AppBar(),
       backgroundColor: const Color.fromARGB(255, 177, 216, 183),
       body: FutureBuilder(
-          future: getFunc(),
+          future: getFunc(widget),
           builder: (context, AsyncSnapshot<List<Funcionario>> snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(

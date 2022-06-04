@@ -83,9 +83,9 @@ router.get("/:cod_ong", (req, res, next) => {
           request: {
             tipo: "GET",
             descricao: "Retorna funcionário(s) de uma ONG",
-            url: "http://localhost:3000/funcionarios",
+            url: "http://localhost:3000/funcionarios/:cod_ong",
           },
-          funcionario: result,
+          funcionarios: result,
         });
       }
     );
