@@ -91,7 +91,7 @@ class HubAdmin extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.red,
+                      primary: const Color.fromARGB(255, 17, 101, 48),
                     ),
                   ),
                 ),
