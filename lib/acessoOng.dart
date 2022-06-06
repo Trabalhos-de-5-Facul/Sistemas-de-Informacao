@@ -101,7 +101,7 @@ class InitState extends State<AcessoONG> {
                                 MaterialPageRoute(
                                     builder: (_) => MyDetails(
                                           ongs: snapshot.data![index],
-                                        )));
+                                        ))).then((_) => setState(() {}));
                           },
                         ),
                       ));

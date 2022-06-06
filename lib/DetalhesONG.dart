@@ -2,7 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/acessoOng.dart';
-
+import 'package:flutter_application_1/ip.dart';
+import 'package:http/http.dart' as http;
 import 'acessoFuncionario.dart';
 
 class MyDetails extends StatefulWidget {
@@ -12,11 +13,53 @@ class MyDetails extends StatefulWidget {
   _MyDetailsState createState() => _MyDetailsState();
 }
 
+showAlertDialog(BuildContext context, int? codigo) {
+  // set up the buttons
+  Widget cancelButton = ElevatedButton(
+    child: Text("Cancel"),
+    onPressed: () {
+      Navigator.of(context).pop();
+    },
+  );
+  Widget continueButton = ElevatedButton(
+    child: Text("Continue"),
+    onPressed: () async {
+      await deleteUser(codigo);
+      Navigator.of(context).popUntil(ModalRoute.withName('/Acesso ONGs'));
+    },
+  );
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Text("AlertDialog"),
+    content:
+        Text("Would you like to continue learning how to use Flutter alerts?"),
+    actions: [
+      cancelButton,
+      continueButton,
+    ],
+  );
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
+}
+
+deleteUser(int? codigo) async {
+  try {
+    print("oi");
+    var response =
+        await http.delete(urlOngs, body: {"cod_ong": codigo.toString()});
+  } catch (e) {
+    print(e);
+  }
+}
+
 class _MyDetailsState extends State<MyDetails> {
   @override
   Widget build(BuildContext context) {
-    void deleteUser() async {}
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Detalhes da ONG'),
@@ -175,7 +218,7 @@ class _MyDetailsState extends State<MyDetails> {
                         )),
                     TextButton(
                         onPressed: () {
-                          deleteUser();
+                          showAlertDialog(context, widget.ongs.codOng);
                         },
                         child: Container(
                           height: 25,
