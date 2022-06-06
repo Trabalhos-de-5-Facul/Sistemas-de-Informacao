@@ -113,10 +113,11 @@ class InitState extends State<AcessoFuncionario> {
                 GestureDetector(
                   onTap: () {
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (_) => SignUpScreenFuncionario(
-                                codigoOng: widget.codOng)));
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => SignUpScreenFuncionario(
+                                    codigoOng: widget.codOng)))
+                        .then((_) => setState(() {}));
                   },
                   child: Container(
                     alignment: Alignment.center,

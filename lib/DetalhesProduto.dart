@@ -2,7 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/acessoProdutos.dart';
-
+import 'package:flutter_application_1/ip.dart';
+import 'package:http/http.dart' as http;
 import 'Hub.dart';
 
 class MyDetailsProd extends StatefulWidget {
@@ -12,10 +13,51 @@ class MyDetailsProd extends StatefulWidget {
   _MyDetailsState createState() => _MyDetailsState();
 }
 
+showAlertDialog(BuildContext context, int? codigo) {
+  // set up the buttons
+  Widget cancelButton = ElevatedButton(
+    child: Text("Cancelar"),
+    onPressed: () {
+      Navigator.of(context).pop();
+    },
+  );
+  Widget continueButton = ElevatedButton(
+    child: Text("Continuar"),
+    onPressed: () async {
+      await deleteUser(codigo);
+      Navigator.of(context).popUntil(ModalRoute.withName('/Acesso Produtos'));
+    },
+  );
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Text("Confirmação de deleção"),
+    content: Text("Tem certeza que deseja deletar o produto?"),
+    actions: [
+      cancelButton,
+      continueButton,
+    ],
+  );
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
+}
+
+deleteUser(int? codigo) async {
+  try {
+    var response = await http
+        .delete(urlProdutos, body: {"cod_produto": codigo.toString()});
+  } catch (e) {
+    print(e);
+  }
+}
+
 class _MyDetailsState extends State<MyDetailsProd> {
   @override
   Widget build(BuildContext context) {
-    void deleteUser() async {}
     String perecivel;
     if (widget.produto.perecivel) {
       perecivel = "Sim";
@@ -122,7 +164,7 @@ class _MyDetailsState extends State<MyDetailsProd> {
                         )),
                     TextButton(
                         onPressed: () {
-                          deleteUser();
+                          showAlertDialog(context, widget.produto.codProduto);
                         },
                         child: Container(
                           height: 25,

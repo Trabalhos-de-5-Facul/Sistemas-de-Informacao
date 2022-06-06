@@ -33,13 +33,10 @@ router.post("/", (req, res, next) => {
       return res.status(500).send({ erro: err });
     }
     conn.query(
-      "INSERT INTO romaneios (NUMERO_ROMANEIO, Sequencia, Data, Codigo_Produto, QTD, CPF, fk_ONGs_COD_ONG, fk_Motoristas_CPF_FUNCIONARIO, assinatura) VALUES (?,?,?,?,?,?,?,?,?)",
+      "INSERT INTO romaneios (NUMERO_ROMANEIO, Data_saida, CPF_FUNCIONARIO, fk_ONGs_COD_ONG, fk_Motoristas_CPF_FUNCIONARIO, Assinatura) VALUES (?,?,?,?,?,?)",
       [
         req.body.numero,
-        req.body.sequencia,
         req.body.data,
-        req.body.codigo_produto,
-        req.body.qtd,
         req.body.cpf,
         req.body.cod_ong,
         req.body.cpf_funcionario,

@@ -81,10 +81,11 @@ class InitState extends State<AcessoProdutos> {
                           subtitle: Text("${snapshot.data![index].codProduto}"),
                           onTap: () {
                             Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (_) => MyDetailsProd(
-                                        produto: snapshot.data![index])));
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) => MyDetailsProd(
+                                            produto: snapshot.data![index])))
+                                .then((_) => setState(() {}));
                           },
                         ),
                       ));

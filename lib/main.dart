@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Hub.dart';
+import 'package:flutter_application_1/acessoMotorista.dart';
 import 'package:flutter_application_1/acessoOng.dart';
 import 'package:flutter_application_1/acessoProdutos.dart';
 import 'package:flutter_application_1/cadastro.dart';
@@ -7,6 +8,9 @@ import 'package:flutter_application_1/cadastroMotorista.dart';
 import 'package:flutter_application_1/cadastroProduto.dart';
 import 'package:flutter_application_1/gerarRomaneio.dart';
 import 'package:flutter_application_1/login.dart';
+
+import 'acessoFuncionario.dart';
+import 'gerarRomaneio_final.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -21,7 +25,12 @@ void main() {
       '/Acesso ONGs': (context) => const AcessoONG(),
       '/Acesso Produtos': (context) => const AcessoProdutos(),
       '/Gerar Romaneio': (context) => const GerarRomaneio(),
+      '/Gerar Romaneio Final': (context) => const GerarRomaneioFinal(),
       '/Login': (context) => const Login(),
+      '/Acesso Funcionario': (context) => AcessoFuncionario(
+            codOng: null,
+          ),
+      '/Acesso Motoristas': (context) => AcessoMotorista()
     },
   ));
 }

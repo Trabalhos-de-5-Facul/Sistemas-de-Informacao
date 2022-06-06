@@ -89,22 +89,34 @@ class InitState extends State<AcessoONG> {
                   child: CircularProgressIndicator(),
                 );
               }
-              return ListView.builder(
-                  itemCount: snapshot.data?.length,
-                  itemBuilder: (BuildContext context, index) => InkWell(
-                        child: ListTile(
-                          title: Text(snapshot.data![index].nome),
-                          subtitle: Text("${snapshot.data![index].codOng}"),
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (_) => MyDetails(
-                                          ongs: snapshot.data![index],
-                                        ))).then((_) => setState(() {}));
-                          },
-                        ),
-                      ));
+              print(snapshot.data?.length);
+              if (snapshot.data?.length != Null && snapshot.data?.length != 0) {
+                return ListView.builder(
+                    itemCount: snapshot.data?.length,
+                    itemBuilder: (BuildContext context, index) => InkWell(
+                          child: ListTile(
+                            title: Text(snapshot.data![index].nome),
+                            subtitle: Text("${snapshot.data![index].codOng}"),
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (_) => MyDetails(
+                                            ongs: snapshot.data![index],
+                                          ))).then((_) => setState(() {}));
+                            },
+                          ),
+                        ));
+              } else {
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [Text("Nenhuma Ong Cadastrada")]),
+                  ],
+                );
+              }
             }));
   }
 }

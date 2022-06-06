@@ -16,13 +16,13 @@ class MyDetails extends StatefulWidget {
 showAlertDialog(BuildContext context, int? codigo) {
   // set up the buttons
   Widget cancelButton = ElevatedButton(
-    child: Text("Cancel"),
+    child: Text("Cancelar"),
     onPressed: () {
       Navigator.of(context).pop();
     },
   );
   Widget continueButton = ElevatedButton(
-    child: Text("Continue"),
+    child: Text("Continuar"),
     onPressed: () async {
       await deleteUser(codigo);
       Navigator.of(context).popUntil(ModalRoute.withName('/Acesso ONGs'));
@@ -30,9 +30,8 @@ showAlertDialog(BuildContext context, int? codigo) {
   );
   // set up the AlertDialog
   AlertDialog alert = AlertDialog(
-    title: Text("AlertDialog"),
-    content:
-        Text("Would you like to continue learning how to use Flutter alerts?"),
+    title: Text("Confirmação de deleção"),
+    content: Text("Tem certeza que deseja deletar a ONG?"),
     actions: [
       cancelButton,
       continueButton,
@@ -199,10 +198,11 @@ class _MyDetailsState extends State<MyDetails> {
                     TextButton(
                         onPressed: () {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (_) => AcessoFuncionario(
-                                      codOng: widget.ongs.codOng)));
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (_) => AcessoFuncionario(
+                                          codOng: widget.ongs.codOng)))
+                              .then((_) => setState(() {}));
                         },
                         child: Container(
                           height: 25,

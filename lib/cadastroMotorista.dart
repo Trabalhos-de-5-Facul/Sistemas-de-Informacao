@@ -68,13 +68,15 @@ registroMotorista register = registroMotorista();
 postMotorista() async {
   try {
     var response = await http.post(urlMotoristas, body: {
-      'Nome': register.getNomeMotorista(),
-      'RG': register.getRG(),
-      'CPF_FUNCIONARIO': register.getCpfMotorista(),
-      'Telefone': register.getTelefone(),
-      'Endereco': register.getEndereco()
+      'nome': register.getNomeMotorista(),
+      'rg': register.getRG(),
+      'cpf': register.getCpfMotorista(),
+      'telefone': register.getTelefone(),
+      'endereco': register.getEndereco()
     });
-  } catch (e) {}
+  } catch (e) {
+    print(e);
+  }
 }
 
 class InitState extends State<SignUpScreenDriver> {

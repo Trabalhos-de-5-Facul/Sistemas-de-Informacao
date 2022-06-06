@@ -6,54 +6,46 @@ import 'package:http/http.dart' as http;
 
 import 'ip.dart';
 
-class GerarRomaneio extends StatefulWidget {
-  const GerarRomaneio({Key? key}) : super(key: key);
+class cadastroRemessa extends StatefulWidget {
+  const cadastroRemessa({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => InitState();
 }
 
 // ignore: camel_case_types
-class registroRomaneio {
-  late int numero, cpf, codigoOng;
+class registroRemessa {
+  late int quantidade;
+  late String data;
 
-  setNumeroRomaneio(int numero) {
-    this.numero = numero;
+  setQuantidadeRemessa(int quantidade) {
+    this.quantidade = quantidade;
   }
 
-  int getNumeroRomaneio() {
-    return numero;
+  int getQuantidadeRemessa() {
+    return quantidade;
   }
 
-  setCpfMotorista(int cpf) {
-    this.cpf = cpf;
+  setdataValidade(String data) {
+    this.data = data;
   }
 
-  int getCpfMotorista() {
-    return cpf;
-  }
-
-  setCodigoOng(int codigo) {
-    codigoOng = codigo;
-  }
-
-  int getCodigoOng() {
-    return codigoOng;
+  String getdataValidade() {
+    return data;
   }
 }
 
-registroRomaneio register = registroRomaneio();
-postRomaneio() async {
+registroRemessa register = registroRemessa();
+postRemessa() async {
   try {
-    var response = await http.post(urlRomaneios, body: {
-      "numero": register.getNumeroRomaneio().toString(),
-      "cpf": register.getCpfMotorista().toString(),
-      "cod_ong": register.getCodigoOng().toString()
+    var response = await http.post(urlRemessas, body: {
+      "quantidade": register.getQuantidadeRemessa().toString(),
+      "data": register.getdataValidade().toString(),
     });
   } catch (e) {}
 }
 
-class InitState extends State<GerarRomaneio> {
+class InitState extends State<cadastroRemessa> {
   @override
   Widget build(BuildContext context) => initWidget();
   Widget initWidget() {
@@ -110,7 +102,7 @@ class InitState extends State<GerarRomaneio> {
             ),
             child: TextField(
               onChanged: (String text) async {
-                register.setNumeroRomaneio(int.parse(text));
+                register.setQuantidadeRemessa(int.parse(text));
               },
               cursorColor: const Color(0xffF5591F),
               decoration: const InputDecoration(
@@ -118,7 +110,7 @@ class InitState extends State<GerarRomaneio> {
                   Icons.numbers,
                   color: Color.fromARGB(255, 4, 197, 52),
                 ),
-                hintText: "Número do Romaneio",
+                hintText: "Quantidade",
                 enabledBorder: InputBorder.none,
                 focusedBorder: InputBorder.none,
               ),
@@ -141,48 +133,16 @@ class InitState extends State<GerarRomaneio> {
             ),
             child: TextField(
               onChanged: (String text) async {
-                register.setCodigoOng(int.parse(text));
+                register.setdataValidade(text);
               },
               cursorColor: const Color.fromARGB(0, 4, 197, 52),
               decoration: const InputDecoration(
                 focusColor: Color.fromARGB(0, 4, 197, 52),
                 icon: Icon(
-                  Icons.code,
+                  Icons.food_bank,
                   color: Color.fromARGB(255, 4, 197, 52),
                 ),
-                hintText: "Código Ong",
-                enabledBorder: InputBorder.none,
-                focusedBorder: InputBorder.none,
-              ),
-            ),
-          ),
-          Container(
-            alignment: Alignment.center,
-            margin: const EdgeInsets.only(left: 20, right: 20, top: 20),
-            padding: const EdgeInsets.only(left: 20, right: 20),
-            height: 54,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(50),
-              color: const Color(0xffEEEEEE),
-              boxShadow: const [
-                BoxShadow(
-                    offset: Offset(0, 20),
-                    blurRadius: 100,
-                    color: Color.fromARGB(255, 17, 101, 48)),
-              ],
-            ),
-            child: TextField(
-              onChanged: (String text) async {
-                register.setCpfMotorista(int.parse(text));
-              },
-              cursorColor: const Color.fromARGB(0, 4, 197, 52),
-              decoration: const InputDecoration(
-                focusColor: Color.fromARGB(0, 4, 197, 52),
-                icon: Icon(
-                  Icons.assignment_rounded,
-                  color: Color.fromARGB(255, 4, 197, 52),
-                ),
-                hintText: "CPF",
+                hintText: "Data de Validade",
                 enabledBorder: InputBorder.none,
                 focusedBorder: InputBorder.none,
               ),
@@ -190,13 +150,8 @@ class InitState extends State<GerarRomaneio> {
           ),
           GestureDetector(
             onTap: () {
-              postRomaneio();
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (_) =>
-                          GerarRomaneioFinal())).then((_) => setState(
-                  () {})); //vai para esta pagina sem gerar um botão de retorno no appbar
+              postRemessa();
+              Navigator.pop(context);
             },
             child: Container(
               alignment: Alignment.center,

@@ -33,9 +33,8 @@ router.post("/", (req, res, next) => {
       return res.status(500).send({ erro: err });
     }
     conn.query(
-      "INSERT INTO remessas (COD_REMESSA, Data_validade, Quantidade, fk_Produtos_COD_PRODUTO, fk_Romaneios_NUMERO_ROMANEIO) VALUES (?,?,?,?,?)",
+      "INSERT INTO remessas (Data_validade, Quantidade, fk_Produtos_COD_PRODUTO, fk_Romaneios_NUMERO_ROMANEIO) VALUES (?,?,?,?)",
       [
-        req.body.cod_remessa,
         req.body.data_validade,
         req.body.qtd,
         req.body.cod_produto,

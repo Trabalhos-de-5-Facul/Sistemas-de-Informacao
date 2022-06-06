@@ -2,17 +2,18 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/acessoFuncionario.dart';
+import 'package:flutter_application_1/acessoMotorista.dart';
 import 'package:flutter_application_1/ip.dart';
 import 'package:http/http.dart' as http;
 
-class MyDetailsFunc extends StatefulWidget {
-  final Funcionario funcionarios;
-  const MyDetailsFunc({required this.funcionarios});
+class MyDetailsMotorista extends StatefulWidget {
+  final Motorista motorista;
+  const MyDetailsMotorista({required this.motorista});
   @override
   _MyDetailsState createState() => _MyDetailsState();
 }
 
-showAlertDialog(BuildContext context, int? codigo, int? codong) {
+showAlertDialog(BuildContext context, int? codigo) {
   // set up the buttons
   Widget cancelButton = ElevatedButton(
     child: Text("Cancelar"),
@@ -25,14 +26,14 @@ showAlertDialog(BuildContext context, int? codigo, int? codong) {
     onPressed: () async {
       await deleteUser(codigo);
       Navigator.of(context).popUntil(
-        ModalRoute.withName("/Acesso ONGs"),
+        ModalRoute.withName("/Acesso Motoristas"),
       );
     },
   );
   // set up the AlertDialog
   AlertDialog alert = AlertDialog(
     title: Text("Confirmação de deleção"),
-    content: Text("Tem certeza que deseja deletar o funcionário?"),
+    content: Text("Tem certeza que deseja deletar o motorista?"),
     actions: [
       cancelButton,
       continueButton,
@@ -51,13 +52,13 @@ deleteUser(int? codigo) async {
   try {
     print("oi");
     var response =
-        await http.delete(urlFuncionarios, body: {"cpf": codigo.toString()});
+        await http.delete(urlMotoristas, body: {"cpf": codigo.toString()});
   } catch (e) {
     print(e);
   }
 }
 
-class _MyDetailsState extends State<MyDetailsFunc> {
+class _MyDetailsState extends State<MyDetailsMotorista> {
   @override
   Widget build(BuildContext context) {
     void deleteUser() async {}
@@ -80,7 +81,7 @@ class _MyDetailsState extends State<MyDetailsFunc> {
                 color: Colors.indigo[700],
                 child: Center(
                     child: Text(
-                  widget.funcionarios.nome,
+                  widget.motorista.nome,
                   style: const TextStyle(color: Color(0xffFFFFFF)),
                 )),
               ),
@@ -94,10 +95,6 @@ class _MyDetailsState extends State<MyDetailsFunc> {
                       Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: const [
-                            Text('Código da ONG'),
-                            SizedBox(
-                              height: 10,
-                            ),
                             Text('RG'),
                             SizedBox(
                               height: 10,
@@ -115,23 +112,19 @@ class _MyDetailsState extends State<MyDetailsFunc> {
                       Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('${widget.funcionarios.codOng}'),
+                            Text(widget.motorista.rg),
                             const SizedBox(
                               height: 10,
                             ),
-                            Text(widget.funcionarios.rg),
+                            Text('${widget.motorista.cpf}'),
                             const SizedBox(
                               height: 10,
                             ),
-                            Text('${widget.funcionarios.cpf}'),
+                            Text(widget.motorista.telefone),
                             const SizedBox(
                               height: 10,
                             ),
-                            Text(widget.funcionarios.telefone),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Text(widget.funcionarios.endereco),
+                            Text(widget.motorista.endereco),
                           ])
                     ],
                   ),
@@ -171,8 +164,7 @@ class _MyDetailsState extends State<MyDetailsFunc> {
                     )),
                 TextButton(
                     onPressed: () {
-                      showAlertDialog(context, widget.funcionarios.cpf,
-                          widget.funcionarios.codOng);
+                      showAlertDialog(context, widget.motorista.cpf);
                     },
                     child: Container(
                       height: 25,

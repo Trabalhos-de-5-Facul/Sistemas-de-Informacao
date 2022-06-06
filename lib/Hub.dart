@@ -95,6 +95,25 @@ class HubAdmin extends StatelessWidget {
                     ),
                   ),
                 ),
+                const SizedBox(
+                  height: 20,
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.35,
+                  height: 100,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/Gerar Romaneio');
+                    },
+                    child: const Text(
+                      'Cadastrar Romaneio',
+                      textAlign: TextAlign.center,
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.red,
+                    ),
+                  ),
+                ),
               ],
             ),
             Column(
@@ -149,16 +168,19 @@ class HubAdmin extends StatelessWidget {
                     onPressed: () {
                       Navigator.pushNamed(
                           context, // vai para a tela de cadastro de ONGs
-                          '/Gerar Romaneio');
+                          '/Acesso Motoristas');
                     },
                     child: const Text(
-                      'Cadastrar Romaneio',
+                      'Acessar Motorista',
                       textAlign: TextAlign.center,
                     ),
                     style: ElevatedButton.styleFrom(
                       primary: Colors.red,
                     ),
                   ),
+                ),
+                const SizedBox(
+                  height: 20,
                 ),
               ],
             )
