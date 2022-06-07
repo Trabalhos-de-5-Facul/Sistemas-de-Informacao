@@ -1,4 +1,4 @@
-// ignore_for_file: file_names, non_constant_identifier_names
+// ignore_for_file: file_names, non_constant_identifier_names, prefer_is_empty, unrelated_type_equality_checks
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
@@ -89,7 +89,6 @@ class InitState extends State<AcessoONG> {
                   child: CircularProgressIndicator(),
                 );
               }
-              print(snapshot.data?.length);
               if (snapshot.data?.length != Null && snapshot.data?.length != 0) {
                 return ListView.builder(
                     itemCount: snapshot.data?.length,
@@ -113,7 +112,7 @@ class InitState extends State<AcessoONG> {
                   children: [
                     Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [Text("Nenhuma Ong Cadastrada")]),
+                        children: const [Text("Nenhuma Ong Cadastrada")]),
                   ],
                 );
               }

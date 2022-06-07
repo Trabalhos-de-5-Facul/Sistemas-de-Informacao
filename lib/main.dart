@@ -25,12 +25,11 @@ void main() {
       '/Acesso ONGs': (context) => const AcessoONG(),
       '/Acesso Produtos': (context) => const AcessoProdutos(),
       '/Gerar Romaneio': (context) => const GerarRomaneio(),
-      '/Gerar Romaneio Final': (context) => const GerarRomaneioFinal(),
       '/Login': (context) => const Login(),
-      '/Acesso Funcionario': (context) => AcessoFuncionario(
+      '/Acesso Funcionario': (context) => const AcessoFuncionario(
             codOng: null,
           ),
-      '/Acesso Motoristas': (context) => AcessoMotorista()
+      '/Acesso Motoristas': (context) => const AcessoMotorista()
     },
   ));
 }

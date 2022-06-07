@@ -401,11 +401,10 @@ class InitState extends State<SignUpScreen> {
             GestureDetector(
               onTap: () {
                 postOng();
-                Navigator.pushNamedAndRemoveUntil(
-                    context,
-                    '/Hub Admin',
-                    (route) =>
-                        false); //vai para esta pagina sem gerar um botão de retorno no appbar
+                Navigator.popUntil(
+                  context,
+                  ModalRoute.withName('/Hub Admin'),
+                ); //vai para esta pagina sem gerar um botão de retorno no appbar
               },
               child: Container(
                 alignment: Alignment.center,

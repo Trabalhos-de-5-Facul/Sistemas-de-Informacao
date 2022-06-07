@@ -61,7 +61,6 @@ class InitState extends State<AcessoFuncionario> {
   late List<Funcionario> funcionarioList = [];
   Future<List<Funcionario>> getFunc(widget) async {
     var url = urlFuncionarios.toString() + "/";
-    print(url);
     var response = await http.get(Uri.parse(url + widget.codOng.toString()));
     if (response.statusCode == 404) {
       funcionarioList = [];

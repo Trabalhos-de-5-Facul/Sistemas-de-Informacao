@@ -48,10 +48,9 @@ showAlertDialog(BuildContext context, int? codigo) {
 
 deleteUser(int? codigo) async {
   try {
-    var response = await http
-        .delete(urlProdutos, body: {"cod_produto": codigo.toString()});
+    await http.delete(urlProdutos, body: {"cod_produto": codigo.toString()});
   } catch (e) {
-    print(e);
+    return (e);
   }
 }
 

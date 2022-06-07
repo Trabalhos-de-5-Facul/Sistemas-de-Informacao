@@ -49,19 +49,15 @@ showAlertDialog(BuildContext context, int? codigo, int? codong) {
 
 deleteUser(int? codigo) async {
   try {
-    print("oi");
-    var response =
-        await http.delete(urlFuncionarios, body: {"cpf": codigo.toString()});
+    await http.delete(urlFuncionarios, body: {"cpf": codigo.toString()});
   } catch (e) {
-    print(e);
+    return (e);
   }
 }
 
 class _MyDetailsState extends State<MyDetailsFunc> {
   @override
   Widget build(BuildContext context) {
-    void deleteUser() async {}
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Detalhes de Funcionário'),

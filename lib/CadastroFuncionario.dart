@@ -79,7 +79,9 @@ postFunc() async {
       "endereco": register.getEndereco(),
       "cod_ong": register.getCodigoOng().toString()
     });
-  } catch (e) {}
+  } catch (e) {
+    return e;
+  }
 }
 
 class InitState extends State<SignUpScreenFuncionario> {

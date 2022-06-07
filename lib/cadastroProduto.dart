@@ -247,11 +247,11 @@ class InitState extends State<SignUpScreenProduct> {
             GestureDetector(
               onTap: () {
                 postProduto();
-                Navigator.pushNamedAndRemoveUntil(
-                    context,
-                    '/Hub Admin',
-                    (route) =>
-                        false); //vai para esta pagina sem gerar um botão de retorno no appbar
+                Navigator.popUntil(
+                  context,
+                  ModalRoute.withName('/Hub Admin'),
+                );
+                //vai para esta pagina sem gerar um botão de retorno no appbar
               },
               child: Container(
                 alignment: Alignment.center,

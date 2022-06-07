@@ -1,5 +1,7 @@
 ///  ignore_for_file: unused_local_variable
 
+// ignore_for_file: file_names, prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/gerarRomaneio_final.dart';
 import 'package:http/http.dart' as http;
@@ -43,15 +45,6 @@ class registroRomaneio {
 }
 
 registroRomaneio register = registroRomaneio();
-postRomaneio() async {
-  try {
-    var response = await http.post(urlRomaneios, body: {
-      "numero": register.getNumeroRomaneio().toString(),
-      "cpf": register.getCpfMotorista().toString(),
-      "cod_ong": register.getCodigoOng().toString()
-    });
-  } catch (e) {}
-}
 
 class InitState extends State<GerarRomaneio> {
   @override
@@ -190,12 +183,12 @@ class InitState extends State<GerarRomaneio> {
           ),
           GestureDetector(
             onTap: () {
-              postRomaneio();
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (_) =>
-                          GerarRomaneioFinal())).then((_) => setState(
+                      builder: (_) => GerarRomaneioFinal(
+                            romaneio: register,
+                          ))).then((_) => setState(
                   () {})); //vai para esta pagina sem gerar um botão de retorno no appbar
             },
             child: Container(

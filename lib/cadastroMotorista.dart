@@ -67,7 +67,7 @@ class registroMotorista {
 registroMotorista register = registroMotorista();
 postMotorista() async {
   try {
-    var response = await http.post(urlMotoristas, body: {
+    await http.post(urlMotoristas, body: {
       'nome': register.getNomeMotorista(),
       'rg': register.getRG(),
       'cpf': register.getCpfMotorista(),
@@ -75,7 +75,7 @@ postMotorista() async {
       'endereco': register.getEndereco()
     });
   } catch (e) {
-    print(e);
+    return (e);
   }
 }
 
@@ -316,11 +316,10 @@ class InitState extends State<SignUpScreenDriver> {
             GestureDetector(
               onTap: () {
                 postMotorista();
-                Navigator.pushNamedAndRemoveUntil(
-                    context,
-                    '/Hub Admin',
-                    (route) =>
-                        false); //vai para esta pagina sem gerar um botão de retorno no appbar
+                Navigator.popUntil(
+                  context,
+                  ModalRoute.withName('/Hub Admin'),
+                ); //vai para esta pagina sem gerar um botão de retorno no appbar
               },
               child: Container(
                 alignment: Alignment.center,

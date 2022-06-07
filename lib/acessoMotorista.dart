@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, use_key_in_widget_constructors
+
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -53,8 +55,6 @@ class AcessoMotorista extends StatefulWidget {
 class InitState extends State<AcessoMotorista> {
   late List<Motorista> motoristaList = [];
   Future<List<Motorista>> getMotorista(widget) async {
-    var url = urlFuncionarios.toString() + "/";
-    print(url);
     var response = await http.get(urlMotoristas);
     if (response.statusCode == 404) {
       motoristaList = [];

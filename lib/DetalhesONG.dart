@@ -16,13 +16,13 @@ class MyDetails extends StatefulWidget {
 showAlertDialog(BuildContext context, int? codigo) {
   // set up the buttons
   Widget cancelButton = ElevatedButton(
-    child: Text("Cancelar"),
+    child: const Text("Cancelar"),
     onPressed: () {
       Navigator.of(context).pop();
     },
   );
   Widget continueButton = ElevatedButton(
-    child: Text("Continuar"),
+    child: const Text("Continuar"),
     onPressed: () async {
       await deleteUser(codigo);
       Navigator.of(context).popUntil(ModalRoute.withName('/Acesso ONGs'));
@@ -30,8 +30,8 @@ showAlertDialog(BuildContext context, int? codigo) {
   );
   // set up the AlertDialog
   AlertDialog alert = AlertDialog(
-    title: Text("Confirmação de deleção"),
-    content: Text("Tem certeza que deseja deletar a ONG?"),
+    title: const Text("Confirmação de deleção"),
+    content: const Text("Tem certeza que deseja deletar a ONG?"),
     actions: [
       cancelButton,
       continueButton,
@@ -48,11 +48,9 @@ showAlertDialog(BuildContext context, int? codigo) {
 
 deleteUser(int? codigo) async {
   try {
-    print("oi");
-    var response =
-        await http.delete(urlOngs, body: {"cod_ong": codigo.toString()});
+    await http.delete(urlOngs, body: {"cod_ong": codigo.toString()});
   } catch (e) {
-    print(e);
+    return (e);
   }
 }
 

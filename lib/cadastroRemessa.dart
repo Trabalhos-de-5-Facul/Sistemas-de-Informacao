@@ -1,5 +1,7 @@
 ///  ignore_for_file: unused_local_variable
 
+// ignore_for_file: unused_import, file_names, camel_case_types, duplicate_ignore
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/gerarRomaneio_final.dart';
 import 'package:http/http.dart' as http;
@@ -7,17 +9,17 @@ import 'package:http/http.dart' as http;
 import 'ip.dart';
 
 class cadastroRemessa extends StatefulWidget {
-  const cadastroRemessa({Key? key}) : super(key: key);
+  final codProduto;
+  const cadastroRemessa({required this.codProduto});
 
   @override
   State<StatefulWidget> createState() => InitState();
 }
 
-// ignore: camel_case_types
 class registroRemessa {
   late int quantidade;
   late String data;
-
+  late int codProduto;
   setQuantidadeRemessa(int quantidade) {
     this.quantidade = quantidade;
   }
@@ -33,22 +35,33 @@ class registroRemessa {
   String getdataValidade() {
     return data;
   }
+
+  int getCodProdutos() {
+    return codProduto;
+  }
+
+  setcodProduto(int cod) {
+    codProduto = cod;
+  }
 }
 
 registroRemessa register = registroRemessa();
 postRemessa() async {
   try {
-    var response = await http.post(urlRemessas, body: {
+    await http.post(urlRemessas, body: {
       "quantidade": register.getQuantidadeRemessa().toString(),
       "data": register.getdataValidade().toString(),
     });
-  } catch (e) {}
+  } catch (e) {
+    return e;
+  }
 }
 
 class InitState extends State<cadastroRemessa> {
   @override
   Widget build(BuildContext context) => initWidget();
   Widget initWidget() {
+    register.setcodProduto(widget.codProduto);
     return Scaffold(
         appBar: AppBar(),
         backgroundColor: const Color.fromARGB(255, 177, 216, 183),
@@ -151,7 +164,7 @@ class InitState extends State<cadastroRemessa> {
           GestureDetector(
             onTap: () {
               postRemessa();
-              Navigator.pop(context);
+              Navigator.pop(context, register);
             },
             child: Container(
               alignment: Alignment.center,
