@@ -58,16 +58,17 @@ router.post("/", (req, res, next) => {
     );
   });
 });
+
 /*
-// Rota para acessar as informações de uma ONG específica
-router.get("/:cod_ong", (req, res, next) => {
+// Rota para acessar as informações de um produto específico
+router.get("/:cod_produto", (req, res, next) => {
   db.getConnection((err, conn) => {
     if (err) {
       return res.status(500).send({ erro: err });
     }
     conn.query(
-      "SELECT * FROM ongs WHERE COD_ONG = ?",
-      [req.params.cod_ong],
+      "SELECT * FROM produtos WHERE COD_PRODUTO = ?",
+      [req.params.cod_produto],
       (err, result, field) => {
         conn.release();
         if (err) {
@@ -75,49 +76,42 @@ router.get("/:cod_ong", (req, res, next) => {
         }
         if (result.length == 0) {
           return res.status(404).send({
-            erro: "Não foi encontrada ONG com esse código",
+            erro: "Não foi encontrado um produto com esse código",
           });
         }
         return res.status(200).send({
           request: {
             tipo: "GET",
-            descricao: "Retorna uma ONG",
-            url: "http://localhost:3000/ongs",
+            descricao: "Retorna um Produto",
+            url: "http://localhost:3000/produtos",
           },
-          ongs: result,
+          produtos: result,
         });
       }
     );
   });
 });
+*/
 
-// Rota para atualizar uma ONG
+// Rota para atualizar um Produto
 router.patch("/", (req, res, next) => {
   db.getConnection((err, conn) => {
     if (err) {
       return res.status(500).send({ erro: err });
     }
     conn.query(
-      `UPDATE ongs
+      `UPDATE produtos
         SET Nome          = ?,
-            Rua           = ?,
-            Numero        = ?,
-            Bairro        = ?,
-            Cidade        = ?,
-            Estado        = ?,
-            CEP           = ?,
-            Nome_Diretora = ?
-      WHERE COD_ONG       = ?`,
+            Fornecedor    = ?,
+            Lote          = ?,
+            Perecivel     = ?
+      WHERE COD_PRODUTO   = ?`,
       [
         req.body.nome,
-        req.body.rua,
-        req.body.numero,
-        req.body.bairro,
-        req.body.cidade,
-        req.body.estado,
-        req.body.cep,
-        req.body.nome_diretora,
-        req.body.cod_ong,
+        req.body.fornecedor,
+        req.body.lote,
+        req.body.perecivel,
+        req.body.cod_produto,
       ],
       (err, result, field) => {
         conn.release();
@@ -125,18 +119,18 @@ router.patch("/", (req, res, next) => {
           return res.status(500).send({ erro: err });
         }
         return res.status(202).send({
-          mensagem: "ONG atualizada com sucesso",
+          mensagem: "Produto atualizado com sucesso",
           request: {
             tipo: "PATCH",
-            descricao: "Atualiza uma ONG",
-            url: "http://localhost:3000/ongs",
+            descricao: "Atualiza um Produto",
+            url: "http://localhost:3000/produtos",
           },
         });
       }
     );
   });
 });
-*/
+
 //Rota para excluir um Produto
 router.delete("/", (req, res, next) => {
   db.getConnection((err, conn) => {

@@ -8,12 +8,13 @@ import 'package:flutter_application_1/cadastroMotorista.dart';
 import 'package:flutter_application_1/cadastroProduto.dart';
 import 'package:flutter_application_1/gerarRomaneio.dart';
 import 'package:flutter_application_1/login.dart';
-
+import 'package:overlay_support/overlay_support.dart';
 import 'acessoFuncionario.dart';
 import 'gerarRomaneio_final.dart';
 
 void main() {
-  runApp(MaterialApp(
+  runApp(OverlaySupport.global(
+      child: MaterialApp(
     debugShowCheckedModeBanner: false,
     title: "Distribuição alimentos",
     initialRoute: '/Login',
@@ -31,5 +32,5 @@ void main() {
           ),
       '/Acesso Motoristas': (context) => const AcessoMotorista()
     },
-  ));
+  )));
 }

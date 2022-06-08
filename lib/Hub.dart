@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/assinatura.dart';
 
 //essa função é um placeholder
 class HubAdmin extends StatelessWidget {
@@ -173,6 +174,28 @@ class HubAdmin extends StatelessWidget {
                         },
                         child: const Text(
                           'Acessar Motorista',
+                          textAlign: TextAlign.center,
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          primary: const Color.fromARGB(255, 17, 101, 48),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.35,
+                      height: 100,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) => SignaturePage()));
+                        },
+                        child: const Text(
+                          'Assinar Romaneio',
                           textAlign: TextAlign.center,
                         ),
                         style: ElevatedButton.styleFrom(

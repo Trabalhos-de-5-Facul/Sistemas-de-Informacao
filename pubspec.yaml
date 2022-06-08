@@ -39,12 +39,25 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  #display signature
+  signature: ^3.2.1
+
+  # save signature
+  permission_handler: ^5.1.0+2
+  image_gallery_saver: ^1.6.8
+  overlay_support: ^1.2.1
+  # show snackbar
+  flushbar: ^1.10.4
+  another_flushbar: ^1.10.29
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^1.0.0
+
+
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
