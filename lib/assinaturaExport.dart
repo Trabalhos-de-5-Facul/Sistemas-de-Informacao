@@ -6,8 +6,10 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:http/http.dart' as http;
 
 import 'utils.dart';
+import 'ip.dart';
 
 class SignaturePreviewPage extends StatelessWidget {
   final Uint8List signature;
@@ -39,16 +41,24 @@ class SignaturePreviewPage extends StatelessWidget {
 
   Future storeSignature(BuildContext context) async {
     final status = await Permission.storage.status;
-    print(signature.length);
     if (!status.isGranted) {
       await Permission.storage.request();
     }
 
+    //Salvando na galeria a imagem e tentando enviar para o server
     final time = DateTime.now().toIso8601String().replaceAll('.', ':');
     final name = 'signature_$time.png';
 
     final result = await ImageGallerySaver.saveImage(signature, name: name);
     final isSuccess = result['isSuccess'];
+
+    print(signature);
+
+    var request = http.MultipartRequest("POST", urlAssinaturas);
+    request.fields['titulo'] = "Assinatura";
+    request.files.add(http.MultipartFile.fromBytes("signature", signature));
+    var response = await request.send();
+    print(response.statusCode);
 
     if (isSuccess) {
       Navigator.pop(context);

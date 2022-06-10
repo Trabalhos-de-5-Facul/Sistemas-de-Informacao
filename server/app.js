@@ -9,10 +9,11 @@ const rotaProdutos = require("./routes/produtos");
 const rotaMotoristas = require("./routes/motoristas");
 const rotaRomaneios = require("./routes/romaneios");
 const rotaRemessas = require("./routes/remessas");
+const rotaAssinaturas = require("./routes/assinaturas");
 
 // Uso do Morgan para monitoramento de requisições
 app.use(morgan("dev"));
-app.use(bodyParser.urlencoded({ extended: false })); // Para dados simples
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json()); // Para dados JSON
 
 // Permissão de origem e cabeçalho para todos os servidores
@@ -37,6 +38,7 @@ app.use("/produtos", rotaProdutos);
 app.use("/motoristas", rotaMotoristas);
 app.use("/romaneios", rotaRomaneios);
 app.use("/remessas", rotaRemessas);
+app.use("/assinaturas", rotaAssinaturas);
 
 // Tratamento de erro ao não encontrar uma Rota válida
 app.use((req, res, next) => {
